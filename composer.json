@@ -1,0 +1,23 @@
+{
+    "name": "aws/aws-sdk-php-laravel",
+    "homepage": "http://aws.amazon.com/sdkforphp2",
+    "description": "A simple Laravel 4 service provider for including the AWS SDK for PHP.",
+    "keywords": ["laravel","laravel 4","aws","amazon","sdk","s3","ec2","dynamodb"],
+    "type":"library",
+    "license":"Apache-2.0",
+    "authors":[
+        {
+            "name":"Amazon Web Services",
+            "homepage":"http://aws.amazon.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.7",
+        "aws/aws-sdk-php": "2.1.*",
+        "laravel/framework": "4.0.*"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": { "Aws\\Laravel": "src/" }
+    }
+}
