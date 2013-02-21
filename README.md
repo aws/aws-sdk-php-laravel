@@ -11,6 +11,7 @@ project's `composer.json`.
 ```json
 {
     "require": {
+        "laravel/framework": "4.0.*",
         "aws/aws-sdk-php-laravel": "1.*"
     },
     "minimum-stability": "dev"
