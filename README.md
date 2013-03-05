@@ -38,13 +38,10 @@ return array(
 Find the `providers` key in `app/config/app.php` and register the AWS Service Provider.
 
 ```php
-'providers' => array(
-
-    ....
-
-    'Aws\Laravel\AwsServiceProvider',
-
-)
+    'providers' => array(
+        // ...
+        'Aws\Laravel\AwsServiceProvider',
+    )
 ```
 
 ### 2. Manual Instantiation
