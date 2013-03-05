@@ -20,7 +20,12 @@ project's `composer.json`.
 
 ## Usage
 
-First you have to register the AWS Service Provider when bootstraping your Laravel application. Create a new `app/config/aws.php` configuration file with the following options.
+To use the AWS Service Provider, you must register the provider when bootstrapping your Laravel application. There are
+essentially two ways to do this.
+
+### 1. Use Laravel Configuration
+
+Create a new `app/config/aws.php` configuration file with the following options:
 
 ```php
 return array(
@@ -30,7 +35,7 @@ return array(
 );
 ```
 
-Now find the `providers` key in `app/config/app.php` and register the AWS Service Provider.
+Find the `providers` key in `app/config/app.php` and register the AWS Service Provider.
 
 ```php
 'providers' => array(
@@ -42,17 +47,21 @@ Now find the `providers` key in `app/config/app.php` and register the AWS Servic
 )
 ```
 
-Or if you'd like to register the configuration options at runtime.
+### 2. Manual Instantiation
+
+You can also register the provider and configuration options at runtime. This could be done in your global bootstrapping
+process in `app/start/global.php`.
 
 ```php
 use Aws\Common\Enum\Region;
 use Aws\Laravel\AwsServiceProvider;
 use Illuminate\Foundation\Application;
 
-// Instantiate a new application. This is done by the Laravel framework and the instance is available
-// in app/start/global.php for you to use.
+// Instantiate a new application. This is normally done by the Laravel framework and the instance is available in
+// `app/start/global.php` for you to use.
 $app = new Application;
 
+// Register the AWS service provider and provide your configuration
 $app->register(new AwsServiceProvider($app), array(
     'config' => array(
         'aws' => array(
@@ -64,8 +73,8 @@ $app->register(new AwsServiceProvider($app), array(
 ));
 ```
 
-*Or* you can specify the path to an AWS config file (see [AWS SDK for PHP](http://github.com/aws/aws-sdk-php) for
-details).
+You can alternatively specify the path to an AWS config file (see [AWS SDK for PHP
+](http://github.com/aws/aws-sdk-php) for details about how to format this type of file).
 
 ```php
 $app->register(new AwsServiceProvider($app), array('config' => array('aws' => '/path/to/aws/config/file.php')));
@@ -73,14 +82,16 @@ $app->register(new AwsServiceProvider($app), array('config' => array('aws' => '/
 
 Either way, the value of `$app['config']['aws']` is passed directly into `Aws\Common\Aws::factory()`.
 
+### Retrieving and Using a Service Client
+
 In order to use the SDK from within your app, you need to retrieve it from the [Laravel IoC
-Container](http://four.laravel.com/docs/ioc).
+Container](http://four.laravel.com/docs/ioc). The following example uses the Amazon S3 client to upload a file.
 
 ```php
 $s3 = App::make('aws')->get('s3');
 $s3->putObject(array(
     'Bucket'     => '<your-bucket>',
-    'Key'        => 'the-name-of-your-object',
+    'Key'        => '<the-name-of-your-object>',
     'SourceFile' => '/path/to/the/file/you/are/uploading.ext',
 ));
 ```
