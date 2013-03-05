@@ -47,8 +47,13 @@ Or if you'd like to register the configuration options at runtime.
 ```php
 use Aws\Common\Enum\Region;
 use Aws\Laravel\AwsServiceProvider;
+use Illuminate\Foundation\Application;
 
-App::register(new AwsServiceProvider($app), array(
+// Instantiate a new application. This is done by the Laravel framework and the instance is available
+// in app/start/global.php for you to use.
+$app = new Application;
+
+$app->register(new AwsServiceProvider($app), array(
     'config' => array(
         'aws' => array(
             'key'    => '<your-aws-access-key-id>',
@@ -63,7 +68,7 @@ App::register(new AwsServiceProvider($app), array(
 details).
 
 ```php
-App::register(new AwsServiceProvider($app), array('config' => array('aws' => '/path/to/aws/config/file.php')));
+$app->register(new AwsServiceProvider($app), array('config' => array('aws' => '/path/to/aws/config/file.php')));
 ```
 
 Either way, the value of `$app['config']['aws']` is passed directly into `Aws\Common\Aws::factory()`.
