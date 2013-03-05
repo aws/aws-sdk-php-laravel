@@ -20,18 +20,35 @@ project's `composer.json`.
 
 ## Usage
 
-First you have to register the AWS Service Provider when bootstrap your Laravel application. You can either provide an
-array of configuration options…
+First you have to register the AWS Service Provider when bootstraping your Laravel application. Create a new `app/config/aws.php` configuration file with the following options.
+
+```php
+return array(
+    'key'    => '<your-aws-access-key-id>',
+    'secret' => '<your-aws-secret-access-key>',
+    'region' => Region::US_WEST_2,
+);
+```
+
+Now find the `providers` key in `app/config/app.php` and register the AWS Service Provider.
+
+```php
+'providers' => array(
+
+    ....
+
+    'Aws\Laravel\AwsServiceProvider',
+
+)
+```
+
+Or if you'd like to register the configuration options at runtime.
 
 ```php
 use Aws\Common\Enum\Region;
 use Aws\Laravel\AwsServiceProvider;
-use Illuminate\Foundation\Application;
 
-$app = new Application();
-// ...
-
-$app->register(new AwsServiceProvider($app), array(
+App::register(new AwsServiceProvider($app), array(
     'config' => array(
         'aws' => array(
             'key'    => '<your-aws-access-key-id>',
@@ -46,7 +63,7 @@ $app->register(new AwsServiceProvider($app), array(
 details).
 
 ```php
-$app->register(new AwsServiceProvider($app), array('config' => array('aws' => '/path/to/aws/config/file.php')));
+App::register(new AwsServiceProvider($app), array('config' => array('aws' => '/path/to/aws/config/file.php')));
 ```
 
 Either way, the value of `$app['config']['aws']` is passed directly into `Aws\Common\Aws::factory()`.
