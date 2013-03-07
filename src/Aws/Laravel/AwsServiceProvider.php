@@ -18,11 +18,10 @@ namespace Aws\Laravel;
 
 use Aws\Common\Aws;
 use Aws\Common\Client\UserAgentListener;
-use Aws\Common\Exception\RuntimeException;
 use Guzzle\Common\Event;
 use Guzzle\Service\Client;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\ServiceProvider;
 
 /**
  * AWS SDK for PHP service provider for Laravel applications
@@ -36,15 +35,19 @@ class AwsServiceProvider extends ServiceProvider
     {
         $this->app['aws'] = $this->app->share(function ($app) {
             // Instantiate the AWS service builder
-            $config = isset($app['config']['aws']) ? $app['config']['aws'] : array();
+            $config = (isset($app['config']) && isset($app['config']['aws'])) ? $app['config']['aws'] : array();
             $aws = Aws::factory($config);
 
             // Attach an event listener that will append the Laravel version number in the user agent string
             $aws->getEventDispatcher()->addListener('service_builder.create_client', function (Event $event) {
+                // The version number is only available in BETA4+, so an extra check is needed
+                $version = defined('Illuminate\Foundation\Application::VERSION') ? Application::VERSION : '4.0.0';
+
+                // Add the listener to modify the UA string
                 $clientConfig = $event['client']->getConfig();
                 $commandParams = $clientConfig->get(Client::COMMAND_PARAMS) ?: array();
                 $clientConfig->set(Client::COMMAND_PARAMS, array_merge_recursive($commandParams, array(
-                    UserAgentListener::OPTION => 'Laravel' . ( defined('Application::VERSION') ? '/' . Application::VERSION : '' ),
+                    UserAgentListener::OPTION => "Laravel/{$version}",
                 )));
             });
 

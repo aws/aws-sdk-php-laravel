@@ -40,7 +40,9 @@ class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
         $provider->boot();
 
         // Get an instance of a client (S3) to use for testing
+        /** @var $s3 \Aws\S3\S3Client */
         $s3 = $app['aws']->get('s3');
+        $this->assertInstanceOf('Aws\S3\S3Client', $s3);
 
         // Verify that the app and clients created by the SDK receive the provided credentials
         $this->assertEquals('your-aws-access-key-id', $app['config']['aws']['key']);
@@ -53,5 +55,25 @@ class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
         $request = $command->prepare();
         $s3->dispatch('command.before_send', array('command' => $command));
         $this->assertRegExp('/.+Laravel\/.+/', $request->getHeader('User-Agent', true));
+    }
+
+    /**
+     * @expectedException \Aws\Common\Exception\InstanceProfileCredentialsException
+     */
+    public function testNoConfigProvided()
+    {
+        // Setup the Laravel app and AWS service provider
+        $app = new Application();
+        $provider = new AwsServiceProvider($app);
+        $app->register($provider);
+        $provider->boot();
+
+        // Make sure we can still get the S3Client
+        /** @var $s3 \Aws\S3\S3Client */
+        $s3 = $app['aws']->get('s3');
+        $this->assertInstanceOf('Aws\S3\S3Client', $s3);
+
+        // Trigger the expected exception
+        $s3->getCredentials()->getAccessKeyId();
     }
 }
