@@ -44,7 +44,7 @@ class AwsServiceProvider extends ServiceProvider
                 $clientConfig = $event['client']->getConfig();
                 $commandParams = $clientConfig->get(Client::COMMAND_PARAMS) ?: array();
                 $clientConfig->set(Client::COMMAND_PARAMS, array_merge_recursive($commandParams, array(
-                    UserAgentListener::OPTION => 'Laravel/' . Application::VERSION,
+                    UserAgentListener::OPTION => 'Laravel' . ( defined('Application::VERSION') ? '/' . Application::VERSION : '' ),
                 )));
             });
 

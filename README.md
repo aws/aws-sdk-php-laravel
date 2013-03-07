@@ -31,7 +31,7 @@ Create a new `app/config/aws.php` configuration file with the following options:
 return array(
     'key'    => '<your-aws-access-key-id>',
     'secret' => '<your-aws-secret-access-key>',
-    'region' => Region::US_WEST_2,
+    'region' => Aws\Common\Enum\Region::US_WEST_2,
 );
 ```
 
