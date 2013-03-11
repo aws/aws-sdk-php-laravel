@@ -35,7 +35,7 @@ class AwsServiceProvider extends ServiceProvider
     {
         $this->app['aws'] = $this->app->share(function ($app) {
             // Instantiate the AWS service builder
-            $config = (isset($app['config']) && isset($app['config']['aws'])) ? $app['config']['aws'] : array();
+            $config = !empty($app['config']['aws']) ? $app['config']['aws'] : array();
             $aws = Aws::factory($config);
 
             // Attach an event listener that will append the Laravel version number in the user agent string
