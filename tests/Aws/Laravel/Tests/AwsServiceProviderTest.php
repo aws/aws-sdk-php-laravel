@@ -64,6 +64,7 @@ class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
     {
         // Setup the Laravel app and AWS service provider
         $app = new Application();
+		$app['config'] = array();
         $provider = new AwsServiceProvider($app);
         $app->register($provider);
         $provider->boot();
