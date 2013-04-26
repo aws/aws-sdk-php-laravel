@@ -13,8 +13,8 @@
     ],
     "require": {
         "php": ">=5.3.7",
-        "aws/aws-sdk-php": "2.1.*",
-        "laravel/framework": "4.0.*"
+        "aws/aws-sdk-php": ">=2.1",
+        "laravel/framework": "4.*"
     },
     "minimum-stability": "dev",
     "autoload": {
