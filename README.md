@@ -44,6 +44,16 @@ Find the `providers` key in `app/config/app.php` and register the AWS Service Pr
     )
 ```
 
+Find the `aliases` key in `app/config/app.php` and add the AWS Facade alias.
+
+```php
+    'aliases' => array(
+        // ...
+        'AWS' => 'Aws\Laravel\AwsFacade',
+    )
+```
+
+
 ### 2. Manual Instantiation
 
 You can also register the provider and configuration options at runtime. This could be done in your global bootstrapping
@@ -86,6 +96,18 @@ Container](http://four.laravel.com/docs/ioc). The following example uses the Ama
 
 ```php
 $s3 = App::make('aws')->get('s3');
+$s3->putObject(array(
+    'Bucket'     => '<your-bucket>',
+    'Key'        => '<the-name-of-your-object>',
+    'SourceFile' => '/path/to/the/file/you/are/uploading.ext',
+));
+```
+
+If the AWS Facade is registered within the `aliases` section of the application configuration, you can use
+the following more expressive method.
+
+```php
+$s3 = AWS::get('s3');
 $s3->putObject(array(
     'Bucket'     => '<your-bucket>',
     'Key'        => '<the-name-of-your-object>',
