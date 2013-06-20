@@ -28,5 +28,8 @@ class AwsFacade extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'aws'; }
+    protected static function getFacadeAccessor()
+    {
+        return 'aws';
+    }
 }

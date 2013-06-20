@@ -29,21 +29,14 @@ class AwsFacadeTest extends \PHPUnit_Framework_TestCase
     {
         // Setup the Laravel app and AWS service provider
         $app = new Application();
+        $app['config'] = array();
         $provider = new AwsServiceProvider($app);
-        $app->register($provider, array(
-            'config' => array(
-                'aws' => array(
-                    'key'    => 'your-aws-access-key-id',
-                    'secret' => 'your-aws-secret-access-key',
-                ),
-            ),
-        ));
+        $app->register($provider);
         $provider->boot();
 
         AWS::setFacadeApplication($app);
 
         // Get an instance of a client (S3) to use for testing
-        /** @var $s3 \Aws\S3\S3Client */
         $s3 = AWS::get('s3');
         $this->assertInstanceOf('Aws\S3\S3Client', $s3);
     }

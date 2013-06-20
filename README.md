@@ -44,7 +44,7 @@ Find the `providers` key in `app/config/app.php` and register the AWS Service Pr
     )
 ```
 
-Find the `aliases` key in `app/config/app.php` and add the AWS Facade alias.
+Find the `aliases` key in `app/config/app.php` and add the AWS facade alias.
 
 ```php
     'aliases' => array(
@@ -52,7 +52,6 @@ Find the `aliases` key in `app/config/app.php` and add the AWS Facade alias.
         'AWS' => 'Aws\Laravel\AwsFacade',
     )
 ```
-
 
 ### 2. Manual Instantiation
 
@@ -80,8 +79,8 @@ $app->register(new AwsServiceProvider($app), array(
 ));
 ```
 
-You can alternatively specify the path to an AWS config file (see [AWS SDK for PHP
-](http://github.com/aws/aws-sdk-php) for details about how to format this type of file).
+You can alternatively specify the path to an AWS config file (see [AWS SDK for PHP](http://github.com/aws/aws-sdk-php)
+for details about how to format this type of file).
 
 ```php
 $app->register(new AwsServiceProvider($app), array('config' => array('aws' => '/path/to/aws/config/file.php')));
