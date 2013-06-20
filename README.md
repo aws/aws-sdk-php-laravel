@@ -1,20 +1,20 @@
 # AWS Service Provider for Laravel 4
 
+[![Latest Stable Version](https://poser.pugx.org/aws/aws-sdk-php-laravel/v/stable.png)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
+[![Total Downloads](https://poser.pugx.org/aws/aws-sdk-php-laravel/downloads.png)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
+
 A simple [Laravel 4](http://four.laravel.com/) service provider for including the [AWS SDK for PHP](https://github.com/aws/aws-sdk-php).
 
 ## Installation
 
 The AWS Service Provider can be installed via [Composer](http://getcomposer.org) by requiring the
-`aws/aws-sdk-php-laravel` package and setting the `minimum-stability` to `dev` (required for Laravel 4) in your
-project's `composer.json`.
+`aws/aws-sdk-php-laravel` package in your project's `composer.json`.
 
 ```json
 {
     "require": {
-        "laravel/framework": "4.0.*",
         "aws/aws-sdk-php-laravel": "1.*"
-    },
-    "minimum-stability": "dev"
+    }
 }
 ```
 
