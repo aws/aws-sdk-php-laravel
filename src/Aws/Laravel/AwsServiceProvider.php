@@ -33,9 +33,12 @@ class AwsServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Register config file.
+        $this->app['config']->package('aws/aws-sdk-php-laravel', __DIR__.'/../../config');
+
         $this->app['aws'] = $this->app->share(function ($app) {
             // Instantiate the AWS service builder
-            $config = !empty($app['config']['aws']) ? $app['config']['aws'] : array();
+            $config = Config::get('aws-sdk-php-laravel::config') ?: array();
             $aws = Aws::factory($config);
 
             // Attach an event listener that will append the Laravel version number in the user agent string

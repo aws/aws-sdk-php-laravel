@@ -25,12 +25,18 @@ essentially two ways to do this.
 
 ### 1. Use Laravel Configuration
 
-Create a new `app/config/aws.php` configuration file with the following options:
+Publish the package configuration from the command line:
+
+```php
+php artisan config:publish aws/aws-sdk-php-laravel`
+```
+
+Update your settings in the generated `app/config/packages/aws/aws-sdk-php-laravel` configuration file:
 
 ```php
 return array(
-    'key'    => '<your-aws-access-key-id>',
-    'secret' => '<your-aws-secret-access-key>',
+    'key'    => 'your-aws-access-key-id',
+    'secret' => 'your-aws-secret-access-key',
     'region' => Aws\Common\Enum\Region::US_WEST_2,
 );
 ```
