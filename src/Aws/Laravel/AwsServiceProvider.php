@@ -22,6 +22,7 @@ use Guzzle\Common\Event;
 use Guzzle\Service\Client;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Config;
 
 /**
  * AWS SDK for PHP service provider for Laravel applications
