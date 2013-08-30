@@ -28,26 +28,30 @@ use Illuminate\Support\ServiceProvider;
  */
 class AwsServiceProvider extends ServiceProvider
 {
+    const VERSION = '1.1.0';
+
     /**
      * @inheritdoc
      */
     public function register()
     {
         $this->app['aws'] = $this->app->share(function ($app) {
+            // Retrieve the config
+            $config = $app['config']['aws'] ?: $app['config']['aws::config'] ?: array();
+            if (isset($config['config_file'])) {
+                $config = $config['config_file'];
+            }
+
             // Instantiate the AWS service builder
-            $config = !empty($app['config']['aws']) ? $app['config']['aws'] : array();
             $aws = Aws::factory($config);
 
-            // Attach an event listener that will append the Laravel version number in the user agent string
+            // Attach an event listener that will append the Laravel and module version numbers to the user agent string
             $aws->getEventDispatcher()->addListener('service_builder.create_client', function (Event $event) {
-                // The version number is only available in BETA4+, so an extra check is needed
-                $version = defined('Illuminate\Foundation\Application::VERSION') ? Application::VERSION : '4.0.0';
-
-                // Add the listener to modify the UA string
                 $clientConfig = $event['client']->getConfig();
                 $commandParams = $clientConfig->get(Client::COMMAND_PARAMS) ?: array();
+                $userAgentSuffix = 'Laravel/' . Application::VERSION . ' L4MOD/' . AwsServiceProvider::VERSION;
                 $clientConfig->set(Client::COMMAND_PARAMS, array_merge_recursive($commandParams, array(
-                    UserAgentListener::OPTION => "Laravel/{$version}",
+                    UserAgentListener::OPTION => $userAgentSuffix,
                 )));
             });
 
@@ -60,5 +64,6 @@ class AwsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->package('aws/aws-sdk-php-laravel', 'aws');
     }
 }
