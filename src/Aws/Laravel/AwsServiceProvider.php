@@ -31,7 +31,9 @@ class AwsServiceProvider extends ServiceProvider
     const VERSION = '1.1.0';
 
     /**
-     * @inheritdoc
+     * Register the service provider.
+     *
+     * @return void
      */
     public function register()
     {
@@ -60,10 +62,22 @@ class AwsServiceProvider extends ServiceProvider
     }
 
     /**
-     * @inheritdoc
+     * Bootstrap the application events.
+     *
+     * @return void
      */
     public function boot()
     {
         $this->package('aws/aws-sdk-php-laravel', 'aws');
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return array('aws');
     }
 }

@@ -19,7 +19,7 @@ namespace Aws\Laravel;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * AWS SDK for PHP service provider for Laravel applications
+ * Facade for the AWS service
  */
 class AwsFacade extends Facade
 {
