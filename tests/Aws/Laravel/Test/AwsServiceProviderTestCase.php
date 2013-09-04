@@ -14,30 +14,44 @@
  * permissions and limitations under the License.
  */
 
-namespace Aws\Laravel\Tests;
+namespace Aws\Laravel\Test;
 
-use Aws\Laravel\AwsFacade as AWS;
 use Aws\Laravel\AwsServiceProvider;
+use Illuminate\Config\Repository;
 use Illuminate\Foundation\Application;
+use Illuminate\Filesystem\Filesystem;
 
 /**
- * AwsFacade test cases
+ * AwsServiceProvider Base Test Case
  */
-class AwsFacadeTest extends \PHPUnit_Framework_TestCase
+abstract class AwsServiceProviderTestCase extends \PHPUnit_Framework_TestCase
 {
-    public function testFacadeCanBeResolvedToServiceInstance()
+    /**
+     * @return Application
+     */
+    protected function setupApplication()
     {
-        // Setup the Laravel app and AWS service provider
+        // Create the application such that the config is loaded
         $app = new Application();
-        $app['config'] = array();
+        $app->instance('path', 'foobar');
+        $app->instance('files', new Filesystem);
+        $app->instance('config', new Repository($app->getConfigLoader(), 'foobar'));
+
+        return $app;
+    }
+
+    /**
+     * @param Application $app
+     *
+     * @return AwsServiceProvider
+     */
+    protected function setupServiceProvider(Application $app)
+    {
+        // Create and register the provider
         $provider = new AwsServiceProvider($app);
         $app->register($provider);
         $provider->boot();
 
-        AWS::setFacadeApplication($app);
-
-        // Get an instance of a client (S3) to use for testing
-        $s3 = AWS::get('s3');
-        $this->assertInstanceOf('Aws\S3\S3Client', $s3);
+        return $provider;
     }
 }
