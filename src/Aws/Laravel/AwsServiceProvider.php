@@ -39,7 +39,7 @@ class AwsServiceProvider extends ServiceProvider
     {
         $this->app['aws'] = $this->app->share(function ($app) {
             // Retrieve the config
-            $config = $app['config']['aws'] ?: $app['config']['aws::config'] ?: array();
+            $config = $app['config']['aws'] ?: $app['config']['aws::config'];
             if (isset($config['config_file'])) {
                 $config = $config['config_file'];
             }
