@@ -14,22 +14,25 @@
  * permissions and limitations under the License.
  */
 
-namespace Aws\Laravel;
+namespace Aws\Laravel\Test;
 
-use Illuminate\Support\Facades\Facade;
+use Aws\Laravel\AwsFacade as AWS;
 
 /**
- * Facade for the AWS service
+ * AwsFacade test cases
  */
-class AwsFacade extends Facade
+class AwsFacadeTest extends AwsServiceProviderTestCase
 {
-    /**
-     * Get the registered name of the component.
-     *
-     * @return string
-     */
-    protected static function getFacadeAccessor()
+    public function testFacadeCanBeResolvedToServiceInstance()
     {
-        return 'aws';
+        $app = $this->setupApplication();
+        $this->setupServiceProvider($app);
+
+        // Mount facades
+        AWS::setFacadeApplication($app);
+
+        // Get an instance of a client (S3) via its facade
+        $s3 = AWS::get('s3');
+        $this->assertInstanceOf('Aws\S3\S3Client', $s3);
     }
 }
