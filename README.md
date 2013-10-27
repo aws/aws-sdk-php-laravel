@@ -18,6 +18,11 @@ The AWS Service Provider can be installed via [Composer](http://getcomposer.org)
 }
 ```
 
+Then run a composer update
+```sh
+php composer.phar update
+```
+
 ## Configuration
 
 To use the AWS Service Provider, you must register the provider when bootstrapping your Laravel application.
