@@ -21,6 +21,8 @@
         "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
-        "psr-0": { "Aws\\Laravel": "src/" }
+        "psr-4": {
+		    "Aws\\Laravel\\": "src/"
+        }
     }
 }
