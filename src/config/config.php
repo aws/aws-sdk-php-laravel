@@ -22,17 +22,16 @@ return array(
     |--------------------------------------------------------------------------
     |
     | In order to communicate with an AWS service, you must provide your AWS
-    | credentials including your AWS Access Key ID and your AWS Secret Key. You
-    | can obtain these keys by logging into your AWS account and visiting
-    | https://console.aws.amazon.com/iam/home?#security_credential.
+    | credentials including your AWS Access Key ID and your AWS Secret Key.
     |
-    | To use credentials from your environment or to use IAM Instance Profile
-    | credentials, please remove these config settings from your config. For
-    | more information see http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/configuration.html
+    | To use credentials from your credentials file or environment or to use
+    | IAM Instance Profile credentials, please remove these config settings from
+    | your config or make sure they are null. For more information see:
+    | http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/configuration.html
     |
     */
-    'key'    => 'YOUR_AWS_ACCESS_KEY_ID',
-    'secret' => 'YOUR_AWS_SECRET_KEY',
+    'key'    => null, // Your AWS Access Key ID
+    'secret' => null, // Your AWS Secret Access Key
 
     /*
     |--------------------------------------------------------------------------
