@@ -31,6 +31,13 @@ class AwsServiceProvider extends ServiceProvider
     const VERSION = '1.1.0';
 
     /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
+
+    /**
      * Register the service provider.
      *
      * @return void
