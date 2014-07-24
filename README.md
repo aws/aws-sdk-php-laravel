@@ -3,7 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/aws/aws-sdk-php-laravel/v/stable.png)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
 [![Total Downloads](https://poser.pugx.org/aws/aws-sdk-php-laravel/downloads.png)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
 
-A simple [Laravel 4](http://four.laravel.com/) service provider for including the [AWS SDK for PHP](https://github.com/aws/aws-sdk-php).
+A simple [Laravel 4](http://laravel.com/) service provider for including the [AWS SDK for PHP](https://github.com/aws/aws-sdk-php).
 
 ## Installation
 
@@ -65,7 +65,7 @@ Find the `aliases` key in your `app/config/app.php` and add the AWS facade alias
 ## Usage
 
 In order to use the AWS SDK for PHP within your app, you need to retrieve it from the [Laravel IoC
-Container](http://four.laravel.com/docs/ioc). The following example uses the Amazon S3 client to upload a file.
+Container](http://laravel.com/docs/ioc). The following example uses the Amazon S3 client to upload a file.
 
 ```php
 $s3 = App::make('aws')->get('s3');
@@ -90,8 +90,8 @@ $s3->putObject(array(
 
 ## Links
 
-* [AWS SDK for PHP on Github](http://github.com/aws/aws-sdk-php)
+* [AWS SDK for PHP on Github](http://github.com/aws/aws-sdk-php/)
 * [AWS SDK for PHP website](http://aws.amazon.com/sdkforphp/)
-* [AWS on Packagist](https://packagist.org/packages/aws)
+* [AWS on Packagist](https://packagist.org/packages/aws/)
 * [License](http://aws.amazon.com/apache2.0/)
-* [Laravel website](http://laravel.com)
+* [Laravel website](http://laravel.com/)
