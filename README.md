@@ -65,7 +65,7 @@ Find the `aliases` key in your `app/config/app.php` and add the AWS facade alias
 ## Usage
 
 In order to use the AWS SDK for PHP within your app, you need to retrieve it from the [Laravel IoC
-Container](http://four.laravel.com/docs/ioc). The following example uses the Amazon S3 client to upload a file.
+Container](http://laravel.com/docs/ioc). The following example uses the Amazon S3 client to upload a file.
 
 ```php
 $s3 = App::make('aws')->get('s3');
