@@ -68,7 +68,7 @@ class AwsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->package('aws/aws-sdk-php-laravel', 'aws');
+        $this->package('aws/aws-sdk-php-laravel', 'aws', __DIR__);
     }
 
     /**
