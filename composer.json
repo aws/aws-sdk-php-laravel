@@ -1,5 +1,5 @@
 {
-    "name": "aws/aws-sdk-php-laravel",
+    "name": "aws/aws-sdk-php-laravel5",
     "homepage": "http://aws.amazon.com/sdkforphp2",
     "description": "A simple Laravel 4 service provider for including the AWS SDK for PHP.",
     "keywords": ["laravel","laravel 4","aws","amazon","sdk","s3","ec2","dynamodb"],
