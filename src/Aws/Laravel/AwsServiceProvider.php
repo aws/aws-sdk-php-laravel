@@ -59,6 +59,8 @@ class AwsServiceProvider extends ServiceProvider
 
             return $aws;
         });
+        
+        $this->app->alias('aws', 'Aws\Common\Aws');
     }
 
     /**
