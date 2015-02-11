@@ -14,7 +14,7 @@
  * permissions and limitations under the License.
  */
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -30,8 +30,8 @@ return array(
     | http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/configuration.html
     |
     */
-    'key'    => null, // Your AWS Access Key ID
-    'secret' => null, // Your AWS Secret Access Key
+    'key'    => env('AWS_ACCESS_KEY_ID'),
+    'secret' => env('AWS_SECRET_ACCESS_KEY'),
 
     /*
     |--------------------------------------------------------------------------
@@ -46,7 +46,7 @@ return array(
     | eu-west-1, sa-east-1, ap-northeast-1, ap-southeast-1, ap-southeast-2
     |
     */
-    'region' => 'us-east-1',
+    'region' => env('AWS_REGION', 'us-east-1'),
 
     /*
     |--------------------------------------------------------------------------
@@ -61,6 +61,6 @@ return array(
     | information: http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/configuration.html#using-a-custom-configuration-file
     |
     */
-    'config_file' => null,
+    'config_file' => env('AWS_CONFIG_FILE'),
 
-);
+];

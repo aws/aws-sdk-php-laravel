@@ -28,7 +28,31 @@ use Illuminate\Support\ServiceProvider;
  */
 class AwsServiceProvider extends ServiceProvider
 {
-    const VERSION = '1.1.0';
+
+    const VERSION = '2.0.0';
+
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
+
+    /**
+     * Bootstrap the configuration
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $config = realpath(__DIR__ . '/../config/config.php');
+
+        $this->mergeConfigFrom($config, 'aws');
+
+        $this->publishes([
+            $config => config_path('aws.php'),
+        ], 'config');
+    }
 
     /**
      * Register the service provider.
@@ -37,38 +61,26 @@ class AwsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['aws'] = $this->app->share(function ($app) {
-            // Retrieve the config
-            $config = $app['config']['aws'] ?: $app['config']['aws::config'];
-            if (isset($config['config_file'])) {
-                $config = $config['config_file'];
-            }
+        $this->app->singleton('aws', function ($app) {
 
             // Instantiate the AWS service builder
-            $aws = Aws::factory($config);
+            $aws = Aws::factory($app['config']->get('aws'));
 
             // Attach an event listener that will append the Laravel and module version numbers to the user agent string
             $aws->getEventDispatcher()->addListener('service_builder.create_client', function (Event $event) {
                 $clientConfig = $event['client']->getConfig();
-                $commandParams = $clientConfig->get(Client::COMMAND_PARAMS) ?: array();
-                $userAgentSuffix = 'Laravel/' . Application::VERSION . ' L4MOD/' . AwsServiceProvider::VERSION;
-                $clientConfig->set(Client::COMMAND_PARAMS, array_merge_recursive($commandParams, array(
+                $commandParams = $clientConfig->get(Client::COMMAND_PARAMS) ?: [];
+                $userAgentSuffix = 'Laravel/' . Application::VERSION . ' L5MOD/' . AwsServiceProvider::VERSION;
+
+                $clientConfig->set(Client::COMMAND_PARAMS, array_merge_recursive($commandParams, [
                     UserAgentListener::OPTION => $userAgentSuffix,
-                )));
+                ]));
             });
 
             return $aws;
         });
-    }
 
-    /**
-     * Bootstrap the application events.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->package('aws/aws-sdk-php-laravel', 'aws');
+        $this->app->alias('aws', 'Aws\Common\Aws');
     }
 
     /**
@@ -78,6 +90,6 @@ class AwsServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('aws');
+        return ['aws'];
     }
 }
