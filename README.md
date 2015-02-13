@@ -1,9 +1,9 @@
-# AWS Service Provider for Laravel 4
+# AWS Service Provider for Laravel 4/5
 
 [![Latest Stable Version](https://poser.pugx.org/aws/aws-sdk-php-laravel/v/stable.png)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
 [![Total Downloads](https://poser.pugx.org/aws/aws-sdk-php-laravel/downloads.png)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
 
-A simple [Laravel 4](http://laravel.com/) service provider for including the [AWS SDK for PHP](https://github.com/aws/aws-sdk-php).
+A simple [Laravel 4/5](http://laravel.com/) service provider for including the [AWS SDK for PHP](https://github.com/aws/aws-sdk-php).
 
 ## Installation
 
@@ -13,7 +13,7 @@ The AWS Service Provider can be installed via [Composer](http://getcomposer.org)
 ```json
 {
     "require": {
-        "aws/aws-sdk-php-laravel": "1.*"
+        "aws/aws-sdk-php-laravel": "~1.0"
     }
 }
 ```
@@ -29,11 +29,19 @@ To use the AWS Service Provider, you must register the provider when bootstrappi
 
 Publish the package configuration using Artisan.
 
+Laravel 4:
+
 ```sh
 php artisan config:publish aws/aws-sdk-php-laravel
 ```
 
-Update your settings in the generated `app/config/packages/aws/aws-sdk-php-laravel` configuration file.
+Laravel 5:
+
+```sh
+php artisan publish:config aws/aws-sdk-php-laravel
+```
+
+Update your settings in the generated `config/packages/aws/aws-sdk-php-laravel` configuration file.
 
 ```php
 return array(
@@ -44,7 +52,7 @@ return array(
 );
 ```
 
-Find the `providers` key in your `app/config/app.php` and register the AWS Service Provider.
+Find the `providers` key in your `config/app.php` and register the AWS Service Provider.
 
 ```php
     'providers' => array(
@@ -53,7 +61,7 @@ Find the `providers` key in your `app/config/app.php` and register the AWS Servi
     )
 ```
 
-Find the `aliases` key in your `app/config/app.php` and add the AWS facade alias.
+Find the `aliases` key in your `config/app.php` and add the AWS facade alias.
 
 ```php
     'aliases' => array(
