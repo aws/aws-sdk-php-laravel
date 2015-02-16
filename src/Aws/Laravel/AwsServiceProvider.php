@@ -37,6 +37,10 @@ class AwsServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(
+            realpath(__DIR__ . '/../../config/config.php'), 'aws'
+        );
+
         $this->app['aws'] = $this->app->share(function ($app) {
             // Retrieve the config
             $config = $app['config']['aws'] ?: $app['config']['aws::config'];
@@ -70,7 +74,9 @@ class AwsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->package('aws/aws-sdk-php-laravel', 'aws');
+        $this->publishes([
+            realpath(__DIR__ . '/../../config/config.php') => config_path('aws.php'),
+        ], 'config');
     }
 
     /**

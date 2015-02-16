@@ -32,10 +32,12 @@ abstract class AwsServiceProviderTestCase extends \PHPUnit_Framework_TestCase
     protected function setupApplication()
     {
         // Create the application such that the config is loaded
+        $config = require getcwd() . '/src/config/config.php';
+
         $app = new Application();
         $app->instance('path', 'foobar');
         $app->instance('files', new Filesystem);
-        $app->instance('config', new Repository($app->getConfigLoader(), 'foobar'));
+        $app->instance('config', new Repository($config));
 
         return $app;
     }
@@ -50,7 +52,6 @@ abstract class AwsServiceProviderTestCase extends \PHPUnit_Framework_TestCase
         // Create and register the provider
         $provider = new AwsServiceProvider($app);
         $app->register($provider);
-        $provider->boot();
 
         return $provider;
     }
