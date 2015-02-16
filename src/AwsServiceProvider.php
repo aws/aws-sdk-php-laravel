@@ -49,9 +49,7 @@ class AwsServiceProvider extends ServiceProvider
 
         $this->mergeConfigFrom($config, 'aws');
 
-        $this->publishes([
-            $config => config_path('aws.php'),
-        ], 'config');
+        $this->publishes([$config => config_path('aws.php')], 'config');
     }
 
     /**
@@ -62,7 +60,6 @@ class AwsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('aws', function ($app) {
-
             // Instantiate the AWS service builder
             $aws = Aws::factory($app['config']->get('aws'));
 
@@ -90,6 +87,6 @@ class AwsServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['aws'];
+        return ['aws', 'Aws\Common\Aws'];
     }
 }
