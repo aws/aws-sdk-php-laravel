@@ -1,4 +1,4 @@
-# AWS Service Provider for Laravel 4
+# AWS Service Provider for Laravel 5
 
 [![Latest Stable Version](https://poser.pugx.org/aws/aws-sdk-php-laravel/v/stable.png)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
 [![Total Downloads](https://poser.pugx.org/aws/aws-sdk-php-laravel/downloads.png)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
@@ -13,7 +13,7 @@ The AWS Service Provider can be installed via [Composer](http://getcomposer.org)
 ```json
 {
     "require": {
-        "aws/aws-sdk-php-laravel": "~2.0"
+        "aws/aws-sdk-php-laravel": "~2.0@beta"
     }
 }
 ```
