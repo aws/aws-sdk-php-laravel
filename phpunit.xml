@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
-         bootstrap="./tests/bootstrap.php"
+         bootstrap="./vendor/autoload.php"
          colors="false"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
@@ -15,6 +15,12 @@
             <directory>./tests/</directory>
         </testsuite>
     </testsuites>
+
+    <php>
+        <env name="AWS_ACCESS_KEY_ID" value="foo"/>
+        <env name="AWS_SECRET_ACCESS_KEY" value="bar"/>
+        <env name="AWS_REGION" value="baz"/>
+    </php>
 
     <filter>
         <whitelist addUncoveredFilesFromWhitelist="false">
