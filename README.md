@@ -5,6 +5,8 @@
 
 A simple [Laravel 5](http://laravel.com/) service provider for including the [AWS SDK for PHP](https://github.com/aws/aws-sdk-php).
 
+_(Looking for the Laravel 4 service provider? It's still available in the [1.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/1.0).)_
+
 ## Installation
 
 The AWS Service Provider can be installed via [Composer](http://getcomposer.org) by requiring the
