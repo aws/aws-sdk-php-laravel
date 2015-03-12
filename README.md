@@ -4,7 +4,7 @@
 [![Latest Stable Version](https://poser.pugx.org/aws/aws-sdk-php-laravel/v/stable.png)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
 [![Total Downloads](https://poser.pugx.org/aws/aws-sdk-php-laravel/downloads.png)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
 
-A simple [Laravel 5](http://laravel.com/) service provider for including the [AWS SDK for PHP](https://github.com/aws/aws-sdk-php).
+A simple [Laravel 5](http://laravel.com/) service provider for making it easier to include the official [AWS SDK for PHP](https://github.com/aws/aws-sdk-php) into your Laravel application.
 
 _(Looking for the Laravel 4 service provider? It's still available in the [1.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/1.0).)_
 
