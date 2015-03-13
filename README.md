@@ -16,7 +16,7 @@ The AWS Service Provider can be installed via [Composer](http://getcomposer.org)
 ```json
 {
     "require": {
-        "aws/aws-sdk-php-laravel": "~2.0@beta"
+        "aws/aws-sdk-php-laravel": "~2.0"
     }
 }
 ```
