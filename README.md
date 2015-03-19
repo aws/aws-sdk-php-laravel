@@ -28,9 +28,27 @@ Then run a composer update
 php composer.phar update
 ```
 
-## Configuration
-
 To use the AWS Service Provider, you must register the provider when bootstrapping your Laravel application.
+
+Find the `providers` key in your `config/app.php` and register the AWS Service Provider.
+
+```php
+    'providers' => array(
+        // ...
+        'Aws\Laravel\AwsServiceProvider',
+    )
+```
+
+Find the `aliases` key in your `config/app.php` and add the AWS facade alias.
+
+```php
+    'aliases' => array(
+        // ...
+        'AWS' => 'Aws\Laravel\AwsFacade',
+    )
+```
+
+## Configuration
 
 By default, the package uses the following environment variables to auto-configure the plugin without modification:
 ```
@@ -55,24 +73,6 @@ return [
     'region'      => 'us-east-1',
     'config_file' => null,
 ];
-```
-
-Find the `providers` key in your `app/config/app.php` and register the AWS Service Provider.
-
-```php
-    'providers' => array(
-        // ...
-        'Aws\Laravel\AwsServiceProvider',
-    )
-```
-
-Find the `aliases` key in your `app/config/app.php` and add the AWS facade alias.
-
-```php
-    'aliases' => array(
-        // ...
-        'AWS' => 'Aws\Laravel\AwsFacade',
-    )
 ```
 
 ## Usage
