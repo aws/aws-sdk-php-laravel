@@ -14,7 +14,6 @@
     "require": {
         "php": ">=5.3.3",
         "aws/aws-sdk-php": "~2.2",
-        "illuminate/foundation": "4.*",
         "illuminate/support": "4.*"
     },
     "require-dev": {
