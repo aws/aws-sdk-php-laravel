@@ -1,12 +1,13 @@
 <?php namespace Aws\Laravel;
 
-use Aws\Common\Aws;
+use Aws\Sdk;
 use Illuminate\Support\ServiceProvider;
 
 /**
  * AWS SDK for PHP service provider for Laravel applications
  */
-class AwsServiceProvider extends ServiceProvider {
+class AwsServiceProvider extends ServiceProvider
+{
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -39,15 +40,10 @@ class AwsServiceProvider extends ServiceProvider {
     public function register()
     {
         $this->app->singleton('aws', function ($app) {
-            $config = $app['config']->get('aws');
-            if (isset($config['config_file'])) {
-                $config = $config['config_file'];
-            }
-
-            return Aws::factory($config);
+            return new Sdk($app['config']->get('aws'));
         });
 
-        $this->app->alias('aws', 'Aws\Common\Aws');
+        $this->app->alias('aws', 'Aws\Sdk');
     }
 
     /**
