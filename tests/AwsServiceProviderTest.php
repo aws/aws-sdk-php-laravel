@@ -5,7 +5,8 @@ use Aws\Laravel\AwsServiceProvider;
 use Illuminate\Config\Repository;
 use Illuminate\Foundation\Application;
 
-class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase {
+class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
+{
 
     public function testFacadeCanBeResolvedToServiceInstance()
     {
@@ -15,29 +16,9 @@ class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase {
         // Mount facades
         AWS::setFacadeApplication($app);
 
-        // Get an instance of a client (S3) via its facade
-        $s3 = AWS::get('s3');
+        // Get an instance of a client (S3) via the facade.
+        $s3 = AWS::createClient('S3');
         $this->assertInstanceOf('Aws\S3\S3Client', $s3);
-    }
-
-    public function testRegisterAwsServiceProviderWithConfigFile()
-    {
-        $app = $this->setupApplication();
-        $this->setupServiceProvider($app);
-
-        // Simulate global config; specify config file
-        $app['config']->set('aws', [
-            'config_file' => __DIR__ . '/test_services.json'
-        ]);
-
-        // Get an instance of a client (S3)
-        /** @var $s3 \Aws\S3\S3Client */
-        $s3 = $app['aws']->get('s3');
-        $this->assertInstanceOf('Aws\S3\S3Client', $s3);
-
-        // Verify that the client received the credentials from the global config
-        $this->assertEquals('change_me', $s3->getCredentials()->getAccessKeyId());
-        $this->assertEquals('change_me', $s3->getCredentials()->getSecretKey());
     }
 
     public function testRegisterAwsServiceProviderWithPackageConfigAndEnv()
@@ -45,14 +26,16 @@ class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase {
         $app = $this->setupApplication();
         $this->setupServiceProvider($app);
 
-        // Get an instance of a client (S3)
+        // Get an instance of a client (S3).
         /** @var $s3 \Aws\S3\S3Client */
-        $s3 = $app['aws']->get('s3');
+        $s3 = $app['aws']->createClient('S3');
         $this->assertInstanceOf('Aws\S3\S3Client', $s3);
 
-        // Verify that the client received the credentials from the package config
-        $this->assertEquals('foo', $s3->getCredentials()->getAccessKeyId());
-        $this->assertEquals('bar', $s3->getCredentials()->getSecretKey());
+        // Verify that the client received the credentials from the package config.
+        /** @var \Aws\Credentials\CredentialsInterface $credentials */
+        $credentials = $s3->getCredentials()->wait();
+        $this->assertEquals('foo', $credentials->getAccessKeyId());
+        $this->assertEquals('bar', $credentials->getSecretKey());
         $this->assertEquals('baz', $s3->getRegion());
     }
 
@@ -68,7 +51,7 @@ class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase {
      */
     private function setupApplication()
     {
-        // Create the application such that the config is loaded
+        // Create the application such that the config is loaded.
         $app = new Application();
         $app->setBasePath(sys_get_temp_dir());
         $app->instance('config', new Repository());
@@ -83,7 +66,7 @@ class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase {
      */
     private function setupServiceProvider(Application $app)
     {
-        // Create and register the provider
+        // Create and register the provider.
         $provider = new AwsServiceProvider($app);
         $app->register($provider);
         $provider->boot();

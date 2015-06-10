@@ -12,15 +12,18 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "aws/aws-sdk-php": "~2.4",
-        "illuminate/support": "~5.0"
+        "php": ">=5.5.9",
+        "aws/aws-sdk-php": "~3.0",
+        "illuminate/support": "~5.1"
     },
     "require-dev": {
-        "laravel/framework": "~5.0",
+        "laravel/framework": "~5.1",
         "phpunit/phpunit": "~4.0"
     },
     "autoload": {
         "psr-4": { "Aws\\Laravel\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Aws\\Laravel\\Test\\": "tests/" }
     }
 }

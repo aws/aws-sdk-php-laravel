@@ -6,9 +6,16 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/aws/aws-sdk-php-laravel.svg)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/aws/aws-sdk-php?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-A simple [Laravel 5](http://laravel.com/) service provider for making it easier to include the official [AWS SDK for PHP](https://github.com/aws/aws-sdk-php) into your Laravel application.
+This is a simple [Laravel](http://laravel.com/) service provider for making it easy to include the official
+[AWS SDK for PHP](https://github.com/aws/aws-sdk-php) in your Laravel and Lumen applications.
 
-_(Looking for the Laravel 4 service provider? It's still available in the [1.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/1.0).)_
+The master branch of this repository and this README are for version 3.x of the service provider, which is implemented
+to work with Version 3 of the AWS SDK for PHP and Laravel 5.1+.
+
+Past Versions:
+
+* [2.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/2.0) - For Laravel 5.0 and Version 2 of the AWS SDK for PHP
+* [1.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/1.0) - For Laravel 4.x and Version 2 of the AWS SDK for PHP
 
 ## Installation
 
@@ -18,7 +25,7 @@ The AWS Service Provider can be installed via [Composer](http://getcomposer.org)
 ```json
 {
     "require": {
-        "aws/aws-sdk-php-laravel": "~2.0"
+        "aws/aws-sdk-php-laravel": "~3.0"
     }
 }
 ```
@@ -54,8 +61,7 @@ By default, the package uses the following environment variables to auto-configu
 ```
 AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY
-AWS_REGION              // default = us-east-1
-AWS_CONFIG_FILE         // default = null
+AWS_REGION (default = us-east-1)
 ```
 
 To customize the configuration file, publish the package configuration using Artisan.
@@ -68,12 +74,22 @@ Update your settings in the generated `app/config/aws.php` configuration file.
 
 ```php
 return [
-    'key'         => 'YOUR_AWS_ACCESS_KEY_ID',
-    'secret'      => 'YOUR_AWS_SECRET_KEY',
-    'region'      => 'us-east-1',
-    'config_file' => null,
+    'credentials' => [
+        'key'    => 'YOUR_AWS_ACCESS_KEY_ID',
+        'secret' => 'YOUR_AWS_SECRET_ACCESS_KEY',
+    ],
+    'region' => 'us-west-2',
+    'version' => 'latest',
+    
+    // You can override settings for specific services
+    'Ses' => [
+        'region' => 'us-east-1',
+    ],
 ];
 ```
+
+Learn more about [configuring the SDK](http://docs.aws.amazon.com/aws-sdk-php/v3/guide/guide/configuration.html) on
+the SDK's User Guide.
 
 ## Usage
 
