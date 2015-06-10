@@ -25,7 +25,7 @@ class AwsServiceProvider extends ServiceProvider {
         $source = realpath(__DIR__ . '/../config/aws.php');
 
         if (class_exists('Illuminate\Foundation\Application', false)) {
-            $this->publishes([$source => config_path('aws.php')], 'config');
+            $this->publishes([$source => config_path('aws.php')]);
         }
 
         $this->mergeConfigFrom($source, 'aws');
