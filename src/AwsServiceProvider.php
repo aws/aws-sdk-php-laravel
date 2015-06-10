@@ -53,7 +53,7 @@ class AwsServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['aws', 'Aws\Common\Aws'];
+        return ['aws', 'Aws\Sdk'];
     }
 
 }
