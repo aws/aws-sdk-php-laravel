@@ -14,10 +14,10 @@
     "require": {
         "php": ">=5.5.9",
         "aws/aws-sdk-php": "~3.0",
-        "illuminate/support": "5.1.*"
+        "illuminate/support": "~5.1"
     },
     "require-dev": {
-        "laravel/framework": "5.1.*",
+        "laravel/framework": "~5.1",
         "phpunit/phpunit": "~4.0"
     },
     "autoload": {
