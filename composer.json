@@ -22,5 +22,8 @@
     },
     "autoload": {
         "psr-4": { "Aws\\Laravel\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Aws\\Laravel\\Test\\": "tests/" }
     }
 }
