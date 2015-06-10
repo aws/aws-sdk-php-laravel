@@ -9,13 +9,14 @@
 This is a simple [Laravel](http://laravel.com/) service provider for making it easy to include the official
 [AWS SDK for PHP](https://github.com/aws/aws-sdk-php) in your Laravel and Lumen applications.
 
-The master branch of this repository and this README are for version 3.x of the service provider, which is implemented
-to work with Version 3 of the AWS SDK for PHP and Laravel 5.1+.
+This README is for version 3.x of the service provider, which is implemented to work with Version 3 of the AWS SDK for
+PHP and Laravel 5.1.
 
-Past Versions:
+**Major Versions:**
 
-* [2.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/2.0) - For Laravel 5.0 and Version 2 of the AWS SDK for PHP
-* [1.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/1.0) - For Laravel 4.x and Version 2 of the AWS SDK for PHP
+* **3.x** (YOU ARE HERE) - For `laravel/framework:~5.1` and `aws/aws-sdk-php:~3.0`
+* **2.x** ([2.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/2.0)) - For `laravel/framework:5.0.*` and `aws/aws-sdk-php:~2.4`
+* **1.x** ([1.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/1.0)) - For `laravel/framework:4.*` and `aws/aws-sdk-php:~2.4`
 
 ## Installation
 
