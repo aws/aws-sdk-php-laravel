@@ -26,9 +26,9 @@ class AwsServiceProvider extends ServiceProvider {
 
         $this->mergeConfigFrom($config, 'aws');
 
-        $this->publishes([
-            $config => $this->app->make('path.config') . DIRECTORY_SEPARATOR . 'aws.php'
-        ], 'config');
+        if (function_exists('config_path')) {
+            $this->publishes([$config => config_path('aws.php')], 'config');
+        }
     }
 
     /**
