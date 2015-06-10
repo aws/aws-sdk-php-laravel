@@ -22,13 +22,13 @@ class AwsServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
-        $config = realpath(__DIR__ . '/../config/config.php');
+        $source = realpath(__DIR__ . '/../config/aws.php');
 
-        $this->mergeConfigFrom($config, 'aws');
+        if (class_exists('Illuminate\Foundation\Application', false)) {
+            $this->publishes([$source => config_path('aws.php')]);
+        }
 
-        $this->publishes([
-            $config => $this->app->make('path.config') . DIRECTORY_SEPARATOR . 'aws.php'
-        ], 'config');
+        $this->mergeConfigFrom($source, 'aws');
     }
 
     /**
@@ -39,7 +39,6 @@ class AwsServiceProvider extends ServiceProvider {
     public function register()
     {
         $this->app->singleton('aws', function ($app) {
-            // Retrieve config.
             $config = $app['config']->get('aws');
             if (isset($config['config_file'])) {
                 $config = $config['config_file'];
