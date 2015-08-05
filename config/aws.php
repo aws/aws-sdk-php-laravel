@@ -1,5 +1,8 @@
 <?php
 
+use Aws\Laravel\AwsServiceProvider;
+use Illuminate\Foundation\Application;
+
 return [
 
     /*
@@ -20,5 +23,8 @@ return [
     ],
     'region' => env('AWS_REGION', 'us-east-1'),
     'version' => 'latest',
-
+    'ua_append' => [
+        'Laravel/' . Application::VERSION,
+        'L5MOD/' . AwsServiceProvider::VERSION,
+    ],
 ];

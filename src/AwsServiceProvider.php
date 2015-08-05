@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
  */
 class AwsServiceProvider extends ServiceProvider
 {
+    const VERSION = '3.0.1';
 
     /**
      * Indicates if loading of the provider is deferred.

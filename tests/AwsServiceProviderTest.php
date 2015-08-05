@@ -46,6 +46,23 @@ class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('aws', $provider->provides());
     }
 
+    public function testVersionInformationIsProvidedToSdkUserAgent()
+    {
+        $app = $this->setupApplication();
+        $this->setupServiceProvider($app);
+        $config = $app['config']->get('aws');
+
+        $this->assertArrayHasKey('ua_append', $config);
+        $this->assertInternalType('array', $config['ua_append']);
+        $this->assertNotEmpty($config['ua_append']);
+        $this->assertNotEmpty(array_filter($config['ua_append'], function ($ua) {
+            return false !== strpos($ua, Application::VERSION);
+        }));
+        $this->assertNotEmpty(array_filter($config['ua_append'], function ($ua) {
+            return false !== strpos($ua, AwsServiceProvider::VERSION);
+        }));
+    }
+
     /**
      * @return Application
      */
