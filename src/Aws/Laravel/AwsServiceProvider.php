@@ -16,7 +16,7 @@
 
 namespace Aws\Laravel;
 
-use Aws\Common\Aws;
+use Aws\Sdk;
 use Aws\Common\Client\UserAgentListener;
 use Guzzle\Common\Event;
 use Guzzle\Service\Client;
@@ -28,7 +28,14 @@ use Illuminate\Support\ServiceProvider;
  */
 class AwsServiceProvider extends ServiceProvider
 {
-    const VERSION = '1.1.0';
+    const VERSION = '1.5.0';
+
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
 
     /**
      * Register the service provider.
@@ -37,15 +44,27 @@ class AwsServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
+//        $this->app->singleton('aws', function ($app) {
+//            // Retrieve the config
+//            $config = $app['config']['aws'] ?: $app['config']['aws::config'];
+//            if (isset($config['config_file'])) {
+//                $config = include($config['config_file']);
+//            }
+//
+//            // Instantiate the AWS service builder
+//            $aws = new Sdk($config);
+//
+//        });
+
+
         $this->app['aws'] = $this->app->share(function ($app) {
             // Retrieve the config
             $config = $app['config']['aws'] ?: $app['config']['aws::config'];
-            if (isset($config['config_file'])) {
-                $config = $config['config_file'];
-            }
 
             // Instantiate the AWS service builder
-            $aws = Aws::factory($config);
+            //$aws = Aws::factory($config);
+            $aws = new Sdk($config);
 
             // Attach an event listener that will append the Laravel and module version numbers to the user agent string
             $aws->getEventDispatcher()->addListener('service_builder.create_client', function (Event $event) {
@@ -60,7 +79,7 @@ class AwsServiceProvider extends ServiceProvider
             return $aws;
         });
         
-        $this->app->alias('aws', 'Aws\Common\Aws');
+        $this->app->alias('aws', 'Aws\Sdk');
     }
 
     /**
@@ -80,6 +99,6 @@ class AwsServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('aws');
+        return array('aws', 'Aws\Sdk');
     }
 }
