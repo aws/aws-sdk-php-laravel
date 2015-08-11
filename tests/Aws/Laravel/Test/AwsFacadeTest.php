@@ -32,7 +32,7 @@ class AwsFacadeTest extends AwsServiceProviderTestCase
         AWS::setFacadeApplication($app);
 
         // Get an instance of a client (S3) via its facade
-        $s3 = AWS::get('s3');
+        $s3 = AWS::createClient('s3');
         $this->assertInstanceOf('Aws\S3\S3Client', $s3);
     }
 }

@@ -16,6 +16,10 @@
 
 namespace Aws\Laravel\Test;
 
+use Aws\Laravel\AwsServiceProvider;
+use Illuminate\Foundation\Application;
+
+
 /**
  * AwsServiceProvider test cases
  */
@@ -26,25 +30,28 @@ class AwsServiceProviderTest extends AwsServiceProviderTestCase
         $app = $this->setupApplication();
         $this->setupServiceProvider($app);
 
-        // Simulate global config; specify config file
-        $app['config']->set('aws', array(
-            'config_file' => __DIR__ . '/test_services.json'
-        ));
-
         // Get an instance of a client (S3)
         /** @var $s3 \Aws\S3\S3Client */
-        $s3 = $app['aws']->get('s3');
+        $s3 = $app['aws']->createClient('s3');
         $this->assertInstanceOf('Aws\S3\S3Client', $s3);
 
         // Verify that the client received the credentials from the global config
-        $this->assertEquals('change_me', $s3->getCredentials()->getAccessKeyId());
-        $this->assertEquals('change_me', $s3->getCredentials()->getSecretKey());
+        $credentials = $s3->getCredentials()->wait();
+        $this->assertEquals('', $credentials->getAccessKeyId());
+        $this->assertEquals('', $credentials->getSecretKey());
 
         // Make sure the user agent contains Laravel information
-        $command = $s3->getCommand('ListBuckets');
-        $request = $command->prepare();
-        $s3->dispatch('command.before_send', array('command' => $command));
-        $this->assertRegExp('/.+Laravel\/.+L4MOD\/.+/', (string) $request->getHeader('User-Agent'));
+        $config = $app['config']['aws'] ?: $app['config']['aws::config'];
+
+        $this->assertArrayHasKey('ua_append', $config);
+        $this->assertInternalType('array', $config['ua_append']);
+        $this->assertNotEmpty($config['ua_append']);
+        $this->assertNotEmpty(array_filter($config['ua_append'], function ($ua) {
+            return false !== strpos($ua, Application::VERSION);
+        }));
+        $this->assertNotEmpty(array_filter($config['ua_append'], function ($ua) {
+            return false !== strpos($ua, AwsServiceProvider::VERSION);
+        }));
     }
 
     public function testRegisterAwsServiceProviderWithPackageConfig()
@@ -54,12 +61,13 @@ class AwsServiceProviderTest extends AwsServiceProviderTestCase
 
         // Get an instance of a client (S3)
         /** @var $s3 \Aws\S3\S3Client */
-        $s3 = $app['aws']->get('s3');
+        $s3 = $app['aws']->createClient('s3');
         $this->assertInstanceOf('Aws\S3\S3Client', $s3);
 
         // Verify that the client received the credentials from the package config
-        $this->assertEquals('YOUR_AWS_ACCESS_KEY_ID', $s3->getCredentials()->getAccessKeyId());
-        $this->assertEquals('YOUR_AWS_SECRET_KEY', $s3->getCredentials()->getSecretKey());
+        $credentials = $s3->getCredentials()->wait();
+        $this->assertEquals('', $credentials->getAccessKeyId());
+        $this->assertEquals('', $credentials->getSecretKey());
     }
 
     public function testServiceNameIsProvided()
