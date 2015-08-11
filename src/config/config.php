@@ -34,8 +34,8 @@ return array(
     |
     */
     'credentials' => [
-        'key'    => env('AWS_ACCESS_KEY_ID'),
-        'secret' => env('AWS_SECRET_ACCESS_KEY'),
+        'key'    => getenv('AWS_ACCESS_KEY_ID'),
+        'secret' => getenv('AWS_SECRET_ACCESS_KEY'),
     ],
 
     /*
@@ -51,7 +51,7 @@ return array(
     | eu-west-1, sa-east-1, ap-northeast-1, ap-southeast-1, ap-southeast-2
     |
     */
-    'region' => env('AWS_REGION', 'us-east-1'),
+    'region' => getenv('AWS_REGION')?:'us-east-1',
     'version' => 'latest',
 
     'ua_append' => [

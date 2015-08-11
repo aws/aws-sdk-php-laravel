@@ -17,10 +17,6 @@
 namespace Aws\Laravel;
 
 use Aws\Sdk;
-use Aws\Common\Client\UserAgentListener;
-use Guzzle\Common\Event;
-use Guzzle\Service\Client;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -45,40 +41,16 @@ class AwsServiceProvider extends ServiceProvider
     public function register()
     {
 
-//        $this->app->singleton('aws', function ($app) {
-//            // Retrieve the config
-//            $config = $app['config']['aws'] ?: $app['config']['aws::config'];
-//            if (isset($config['config_file'])) {
-//                $config = include($config['config_file']);
-//            }
-//
-//            // Instantiate the AWS service builder
-//            $aws = new Sdk($config);
-//
-//        });
-
-
-        $this->app['aws'] = $this->app->share(function ($app) {
+        $this->app->singleton('aws', function ($app) {
             // Retrieve the config
             $config = $app['config']['aws'] ?: $app['config']['aws::config'];
 
             // Instantiate the AWS service builder
-            //$aws = Aws::factory($config);
             $aws = new Sdk($config);
-
-            // Attach an event listener that will append the Laravel and module version numbers to the user agent string
-            $aws->getEventDispatcher()->addListener('service_builder.create_client', function (Event $event) {
-                $clientConfig = $event['client']->getConfig();
-                $commandParams = $clientConfig->get(Client::COMMAND_PARAMS) ?: array();
-                $userAgentSuffix = 'Laravel/' . Application::VERSION . ' L4MOD/' . AwsServiceProvider::VERSION;
-                $clientConfig->set(Client::COMMAND_PARAMS, array_merge_recursive($commandParams, array(
-                    UserAgentListener::OPTION => $userAgentSuffix,
-                )));
-            });
 
             return $aws;
         });
-        
+
         $this->app->alias('aws', 'Aws\Sdk');
     }
 
