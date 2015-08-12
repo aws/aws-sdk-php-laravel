@@ -47,9 +47,6 @@ class AwsServiceProviderTest extends AwsServiceProviderTestCase
         $this->assertInternalType('array', $config['ua_append']);
         $this->assertNotEmpty($config['ua_append']);
         $this->assertNotEmpty(array_filter($config['ua_append'], function ($ua) {
-            return false !== strpos($ua, Application::VERSION);
-        }));
-        $this->assertNotEmpty(array_filter($config['ua_append'], function ($ua) {
             return false !== strpos($ua, AwsServiceProvider::VERSION);
         }));
     }

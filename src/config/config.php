@@ -14,7 +14,6 @@
  * permissions and limitations under the License.
  */
 
-use Illuminate\Foundation\Application;
 use Aws\Laravel\AwsServiceProvider;
 
 return array(
@@ -55,7 +54,6 @@ return array(
     'version' => 'latest',
 
     'ua_append' => [
-        'Laravel/' . Application::VERSION,
         'L5MOD/' . AwsServiceProvider::VERSION,
     ],
 
