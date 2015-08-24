@@ -43,7 +43,7 @@ Find the `providers` key in your `config/app.php` and register the AWS Service P
 ```php
     'providers' => array(
         // ...
-        'Aws\Laravel\AwsServiceProvider',
+        Aws\Laravel\AwsServiceProvider::class,
     )
 ```
 
@@ -52,7 +52,7 @@ Find the `aliases` key in your `config/app.php` and add the AWS facade alias.
 ```php
     'aliases' => array(
         // ...
-        'AWS' => 'Aws\Laravel\AwsFacade',
+        'AWS' => Aws\Laravel\AwsFacade::class,
     )
 ```
 
