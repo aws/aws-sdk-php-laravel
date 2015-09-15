@@ -42,9 +42,6 @@ class AwsServiceProvider extends ServiceProvider
     {
         $this->app->singleton('aws', function ($app) {
             $config = $app['config']->get('aws');
-            if (is_null($app['config']->get('aws')['credentials']['key']) && is_null($app['config']->get('aws')['credentials']['secret'])) {
-                unset($config['credentials']);
-            }
             return new Sdk($config);
         });
 
