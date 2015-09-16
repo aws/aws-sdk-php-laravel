@@ -9,8 +9,8 @@ php:
 sudo: false
 
 matrix:
-	allow_failures:
-	  - php: hhvm
+  allow_failures:
+    - php: hhvm
 
 install: travis_retry composer install --no-interaction --prefer-source
 
