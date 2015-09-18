@@ -41,7 +41,8 @@ class AwsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('aws', function ($app) {
-            return new Sdk($app['config']->get('aws'));
+            $config = $app['config']->get('aws');
+            return new Sdk($config);
         });
 
         $this->app->alias('aws', 'Aws\Sdk');
