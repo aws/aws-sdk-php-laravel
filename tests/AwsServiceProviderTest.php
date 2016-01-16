@@ -2,10 +2,9 @@
 
 use Aws\Laravel\AwsFacade as AWS;
 use Aws\Laravel\AwsServiceProvider;
-use Illuminate\Config\Repository;
-use Illuminate\Foundation\Application;
+use Illuminate\Container\Container;
 
-class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
+abstract class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
 
     public function testFacadeCanBeResolvedToServiceInstance()
@@ -61,24 +60,16 @@ class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Application
+     * @return Container
      */
-    private function setupApplication()
-    {
-        // Create the application such that the config is loaded.
-        $app = new Application();
-        $app->setBasePath(sys_get_temp_dir());
-        $app->instance('config', new Repository());
-
-        return $app;
-    }
+    abstract protected function setupApplication();
 
     /**
-     * @param Application $app
+     * @param Container $app
      *
      * @return AwsServiceProvider
      */
-    private function setupServiceProvider(Application $app)
+    private function setupServiceProvider(Container $app)
     {
         // Create and register the provider.
         $provider = new AwsServiceProvider($app);
@@ -87,5 +78,4 @@ class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
 
         return $provider;
     }
-
 }

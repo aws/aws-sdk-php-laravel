@@ -17,8 +17,9 @@
         "illuminate/support": "~5.1"
     },
     "require-dev": {
-        "laravel/framework": "~5.1",
-        "phpunit/phpunit": "~4.0"
+        "laravel/framework": "~5.2",
+        "phpunit/phpunit": "~4.0",
+        "laravel/lumen-framework": "~5.2"
     },
     "autoload": {
         "psr-4": { "Aws\\Laravel\\": "src/" }
