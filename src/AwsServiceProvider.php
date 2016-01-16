@@ -24,13 +24,17 @@ class AwsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $source = realpath(__DIR__ . '/../config/aws.php');
+        if (str_contains($this->app->version(), 'Lumen')) {
+            $this->app->configure('aws');
+        }else{
+            $source = realpath(__DIR__ . '/../config/aws.php');
 
-        if (class_exists('Illuminate\Foundation\Application', false)) {
-            $this->publishes([$source => config_path('aws.php')]);
+            if (class_exists('Illuminate\Foundation\Application', false)) {
+                $this->publishes([$source => config_path('aws.php')]);
+            }
+
+            $this->mergeConfigFrom($source, 'aws');
         }
-
-        $this->mergeConfigFrom($source, 'aws');
     }
 
     /**
