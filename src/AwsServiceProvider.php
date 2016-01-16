@@ -28,10 +28,10 @@ class AwsServiceProvider extends ServiceProvider
     {
         $source = realpath(__DIR__ . '/../config/aws.php');
 
-        if ($this->app instanceof LaravelApplication && $app->runningInConsole()) {
+        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([$source => config_path('aws.php')]);
         } elseif ($this->app instanceof LumenApplication) {
-            $app->configure('aws');
+            $this->app->configure('aws');
         }
 
         $this->mergeConfigFrom($source, 'aws');
