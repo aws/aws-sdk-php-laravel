@@ -29,11 +29,11 @@ check-tag:
 # that the source is still valid after updating, commits the changelog and
 # updated VERSION constant, creates an annotated git tag using chag, and
 # prints out a diff of the last commit.
-tag: check-tag test
+tag: check-tag
 	@echo Tagging $(TAG)
 	chag update $(TAG)
 	sed -i '' -e "s/VERSION = '.*'/VERSION = '$(TAG)'/" src/AwsServiceProvider.php
-	php -l src/AwsBundle.php
+	php -l src/AwsServiceProvider.php
 	git commit -a -m '$(TAG) release'
 	chag tag
 	@echo "Release has been created. Push using 'make release'"

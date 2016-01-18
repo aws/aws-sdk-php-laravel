@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## next release
+## 3.1.0 - 2016-01-17
 
-* Added test coverage for version 5.2 of both Lumen and Laravel.
+* Added support for Lumen.
 
 ## 3.0.3 - 2015-09-18
 
