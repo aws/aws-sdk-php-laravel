@@ -5,6 +5,15 @@ use Illuminate\Foundation\Application;
 
 class LaravelAwsServiceProviderTest extends AwsServiceProviderTest
 {
+    public function setUp()
+    {
+        if (!class_exists(Application::class)) {
+            $this->markTestSkipped();
+        }
+
+        parent::setUp();
+    }
+
     protected function setupApplication()
     {
         // Create the application such that the config is loaded.

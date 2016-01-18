@@ -12,7 +12,7 @@ matrix:
   allow_failures:
     - php: hhvm
 
-install: travis_retry composer install --no-interaction --prefer-source
+install: travis_retry composer install --no-interaction
 
-script: vendor/bin/phpunit
+script: make test
 
