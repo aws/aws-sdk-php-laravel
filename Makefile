@@ -1,4 +1,6 @@
-test: test-laravel test-lumen
+test: remove-deps
+	make test-laravel
+	make test-lumen
 
 test-laravel:
 	composer require laravel/framework
@@ -10,14 +12,13 @@ test-lumen:
 	vendor/bin/phpunit
 	make uninstall-lumen
 
-uninstall-illuminate:
-	rm -rf vendor/laravel
-	rm -rf vendor/illuminate
+remove-deps:
+	rm -rf vendor
 
-uninstall-laravel: uninstall-illuminate
+uninstall-laravel: remove-deps
 	composer remove laravel/framework
 
-uninstall-lumen: uninstall-illuminate
+uninstall-lumen: remove-deps
 	composer remove laravel/lumen-framework
 
 # Ensures that the TAG variable was passed to the make command
