@@ -1,7 +1,9 @@
 <?php namespace Aws\Laravel;
 
 use Aws\Sdk;
+use Illuminate\Foundation\Application as LaravelApplication;
 use Illuminate\Support\ServiceProvider;
+use Laravel\Lumen\Application as LumenApplication;
 
 /**
  * AWS SDK for PHP service provider for Laravel applications
@@ -26,8 +28,10 @@ class AwsServiceProvider extends ServiceProvider
     {
         $source = realpath(__DIR__ . '/../config/aws.php');
 
-        if (class_exists('Illuminate\Foundation\Application', false)) {
+        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([$source => config_path('aws.php')]);
+        } elseif ($this->app instanceof LumenApplication) {
+            $this->app->configure('aws');
         }
 
         $this->mergeConfigFrom($source, 'aws');
@@ -41,7 +45,8 @@ class AwsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('aws', function ($app) {
-            $config = $app['config']->get('aws');
+            $config = $app->make('config')->get('aws');
+
             return new Sdk($config);
         });
 

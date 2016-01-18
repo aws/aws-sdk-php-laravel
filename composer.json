@@ -17,8 +17,11 @@
         "illuminate/support": "~5.1"
     },
     "require-dev": {
-        "laravel/framework": "~5.1",
-        "phpunit/phpunit": "~4.0"
+        "phpunit/phpunit": "~4.0|~5.0"
+    },
+    "suggest": {
+        "laravel/framework": "To test the Laravel bindings",
+        "laravel/lumen-framework": "To test the Lumen bindings"
     },
     "autoload": {
         "psr-4": { "Aws\\Laravel\\": "src/" }
