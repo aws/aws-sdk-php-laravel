@@ -26,7 +26,7 @@ class AwsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $source = realpath(__DIR__ . '/../config/aws.php');
+        $source = dirname(__DIR__).'/config/aws.php';
 
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([$source => config_path('aws.php')]);
