@@ -89,6 +89,9 @@ return [
 ];
 ```
 
+Referring Laravel 5.2.0 [Upgrade guide](https://laravel.com/docs/5.2/upgrade#upgrade-5.2.0), you must using config 
+file instead of environment variable option if using php artisan `config:cache`.
+
 Learn more about [configuring the SDK](http://docs.aws.amazon.com/aws-sdk-php/v3/guide/guide/configuration.html) on
 the SDK's User Guide.
 
