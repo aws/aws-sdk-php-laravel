@@ -28,7 +28,7 @@ use Illuminate\Support\ServiceProvider;
  */
 class AwsServiceProvider extends ServiceProvider
 {
-    const VERSION = '1.1.0';
+    const VERSION = '1.2.0';
 
     /**
      * Register the service provider.
