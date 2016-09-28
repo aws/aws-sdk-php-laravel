@@ -14,6 +14,8 @@
  * permissions and limitations under the License.
  */
 
+use Aws\Laravel\AwsServiceProvider;
+
 return array(
 
     /*
@@ -30,8 +32,10 @@ return array(
     | http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/configuration.html
     |
     */
-    'key'    => null, // Your AWS Access Key ID
-    'secret' => null, // Your AWS Secret Access Key
+    'credentials' => [
+        'key'    => getenv('AWS_ACCESS_KEY_ID'),
+        'secret' => getenv('AWS_SECRET_ACCESS_KEY'),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -46,21 +50,12 @@ return array(
     | eu-west-1, sa-east-1, ap-northeast-1, ap-southeast-1, ap-southeast-2
     |
     */
-    'region' => 'us-east-1',
+    'region' => getenv('AWS_REGION')?:'us-east-1',
+    'version' => 'latest',
 
-    /*
-    |--------------------------------------------------------------------------
-    | AWS Config File Location
-    |--------------------------------------------------------------------------
-    |
-    | Instead of specifying your credentials and region here, you can specify
-    | the location of an AWS SDK for PHP config file to use. These files provide
-    | more granular control over what credentials and regions you are using for
-    | each service. If you specify a filepath for this configuration setting,
-    | the others in this file will be ignored. See the SDK user guide for more
-    | information: http://docs.aws.amazon.com/aws-sdk-php-2/guide/latest/configuration.html#using-a-custom-configuration-file
-    |
-    */
-    'config_file' => null,
+    'ua_append' => [
+        'L5MOD/' . AwsServiceProvider::VERSION,
+    ],
+
 
 );
