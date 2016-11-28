@@ -38,14 +38,15 @@ php composer.phar update
 
 To use the AWS Service Provider, you must register the provider when bootstrapping your application.
 
-#### Lumen
+
+### Lumen
 In Lumen find the `Register Service Providers` in your `bootstrap/app.php` and register the AWS Service Provider.
 ```php
     $app->register(Aws\Laravel\AwsServiceProvider::class);
 ```
 
-#### Laravel
 
+### Laravel
 In Laravel find the `providers` key in your `config/app.php` and register the AWS Service Provider.
 
 ```php
