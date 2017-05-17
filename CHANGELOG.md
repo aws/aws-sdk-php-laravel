@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.2.0 - 2017-05-17
+
+* Added DynamoDb session driver support.
+
 ## 3.1.0 - 2016-01-17
 
 * Added support for Lumen.
