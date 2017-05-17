@@ -2,6 +2,7 @@
 
 use Illuminate\Config\Repository;
 use Illuminate\Foundation\Application;
+use \Mockery as M;
 
 class LaravelAwsServiceProviderTest extends AwsServiceProviderTest
 {
@@ -22,5 +23,18 @@ class LaravelAwsServiceProviderTest extends AwsServiceProviderTest
         $app->instance('config', new Repository());
 
         return $app;
+    }
+
+    public function testSessionDriverIsRegistered()
+    {
+        $app = $this->setupApplication();
+
+        $session = M::mock(StdClass::class);
+        $session->shouldReceive('extend')->with('dynamodb', \Closure::class)->once();
+        $app->instance('session', $session);
+
+        $this->setupServiceProvider($app);
+
+        M::close();
     }
 }
