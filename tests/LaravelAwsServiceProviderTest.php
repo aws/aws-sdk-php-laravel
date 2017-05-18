@@ -2,7 +2,7 @@
 
 use Illuminate\Config\Repository;
 use Illuminate\Foundation\Application;
-use \Mockery as M;
+use Mockery as M;
 
 class LaravelAwsServiceProviderTest extends AwsServiceProviderTest
 {

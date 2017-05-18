@@ -3,6 +3,7 @@ namespace Aws\Laravel\Test;
 
 use Illuminate\Config\Repository;
 use Laravel\Lumen\Application;
+use Mockery as M;
 
 class LumenAwsServiceProviderTest extends AwsServiceProviderTest
 {
@@ -22,5 +23,14 @@ class LumenAwsServiceProviderTest extends AwsServiceProviderTest
         $app->instance('config', new Repository());
 
         return $app;
+    }
+
+    public function testSessionDriverIsNotRegistered()
+    {
+        $app = $this->setupApplication();
+        $app->resolving('session', function() {
+            $this->fail('Should not resolve session when boot() is called in Lumen context.');
+        });
+        $this->setupServiceProvider($app);
     }
 }
