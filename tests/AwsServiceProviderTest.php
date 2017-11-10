@@ -3,8 +3,9 @@
 use Aws\Laravel\AwsFacade as AWS;
 use Aws\Laravel\AwsServiceProvider;
 use Illuminate\Container\Container;
+use PHPUnit\Framework\TestCase;
 
-abstract class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
+abstract class AwsServiceProviderTest extends TestCase
 {
 
     public function testFacadeCanBeResolvedToServiceInstance()
