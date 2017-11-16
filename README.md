@@ -77,7 +77,7 @@ AWS_REGION (default = us-east-1)
 To customize the configuration file, publish the package configuration using Artisan.
 
 ```sh
-php artisan vendor:publish
+php artisan vendor:publish  --provider="Aws\Laravel\AwsServiceProvider"
 ```
 
 Update your settings in the generated `app/config/aws.php` configuration file.
