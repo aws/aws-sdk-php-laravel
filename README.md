@@ -80,7 +80,7 @@ To customize the configuration file, publish the package configuration using Art
 php artisan vendor:publish  --provider="Aws\Laravel\AwsServiceProvider"
 ```
 
-Update your settings in the generated `app/config/aws.php` configuration file.
+Update your settings in the generated `config/aws.php` configuration file.
 
 ```php
 return [
