@@ -1,5 +1,17 @@
 # CHANGELOG
 
+## 3.2.1 - 2018-10-19
+
+* Update Travis CI with later PHP versions
+* Fix composer dependency resolution issue for Travis & PHP 5.5.9
+* Updated location of aws config file in README.md
+* Update README.md
+
+## 3.2.0 - 2018-09-28
+
+* Added --provider option for vendor:publish command
+* Added support for Laravel Auto-Discovery
+
 ## 3.1.0 - 2016-01-17
 
 * Added support for Lumen.
