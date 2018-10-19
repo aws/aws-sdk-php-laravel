@@ -4,13 +4,17 @@ php:
   - 5.5.9
   - 5.6
   - 7.0
+  - 7.1
+  - 7.2
   - hhvm
+  - nightly
 
 sudo: false
 
 matrix:
   allow_failures:
     - php: hhvm
+    - php: nightly
 
 install:
   - if [[ ${TRAVIS_PHP_VERSION} == "5.5.9" ]];
