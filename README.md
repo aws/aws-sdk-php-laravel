@@ -4,7 +4,7 @@
 [![Build Status](https://img.shields.io/travis/aws/aws-sdk-php-laravel.svg)](https://travis-ci.org/aws/aws-sdk-php-laravel)
 [![Latest Stable Version](https://img.shields.io/packagist/v/aws/aws-sdk-php-laravel.svg)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
 [![Total Downloads](https://img.shields.io/packagist/dt/aws/aws-sdk-php-laravel.svg)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/aws/aws-sdk-php?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/aws/aws-sdk-php)
 
 This is a simple [Laravel](http://laravel.com/) service provider for making it easy to include the official
 [AWS SDK for PHP](https://github.com/aws/aws-sdk-php) in your Laravel and Lumen applications.
@@ -130,10 +130,33 @@ $s3->putObject(array(
 ));
 ```
 
+## `dynamodb` Session Driver
+
+This package publishes the [AWS DynamoDb session driver](https://docs.aws.amazon.com/aws-sdk-php/v2/guide/feature-dynamodb-session-handler.html) 
+for use in Laravel. You must first [create a DynamoDb table for your PHP sessions](https://docs.aws.amazon.com/aws-sdk-php/v2/guide/feature-dynamodb-session-handler.html#create-a-table-for-storing-your-sessions) 
+and then configure your application.
+
+Using the DynamoDb driver is exactly the same as any other [Laravel session driver](https://laravel.com/docs/5.4/session). 
+Simply change your `driver` configuration option to `dynamodb` and add/update any of the following configuration options 
+([see AWS docs](https://docs.aws.amazon.com/aws-sdk-php/v2/guide/feature-dynamodb-session-handler.html#configuration) for 
+more information, and please note that `table` and `lifetime` have been renamed to be consistent with all other Laravel 
+session drivers):
+
+* `table`: This should be the name of the DynamoDb table you created
+* `hash_key`: Name of hash key in table (default is `id`)
+* `lifetime`: Session lifetime
+* `consistent_read`: Whether or not to use consistent reads
+* `batch_config`: Batch options used for garbage collection
+* `locking`: Whether or not to use session locking
+* `max_lock_wait_time`: Max time (in seconds) to wait for lock acquisition
+* `min_lock_retry_microtime`: Min time (in µs) to wait between lock attempts
+* `max_lock_retry_microtime`: Max time (in µs) to wait between lock attempts
+
 ## Links
 
 * [AWS SDK for PHP on Github](http://github.com/aws/aws-sdk-php/)
 * [AWS SDK for PHP website](http://aws.amazon.com/sdkforphp/)
 * [AWS on Packagist](https://packagist.org/packages/aws/)
+* [DynamoDb Session Handler](https://docs.aws.amazon.com/aws-sdk-php/v2/guide/feature-dynamodb-session-handler.html)
 * [License](http://aws.amazon.com/apache2.0/)
 * [Laravel website](http://laravel.com/)

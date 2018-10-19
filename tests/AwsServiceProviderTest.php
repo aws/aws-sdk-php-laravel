@@ -69,7 +69,7 @@ abstract class AwsServiceProviderTest extends \PHPUnit_Framework_TestCase
      *
      * @return AwsServiceProvider
      */
-    private function setupServiceProvider(Container $app)
+    protected function setupServiceProvider(Container $app)
     {
         // Create and register the provider.
         $provider = new AwsServiceProvider($app);
