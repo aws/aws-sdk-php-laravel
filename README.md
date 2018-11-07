@@ -80,15 +80,15 @@ To customize the configuration file, publish the package configuration using Art
 php artisan vendor:publish  --provider="Aws\Laravel\AwsServiceProvider"
 ```
 
-Update your settings in the generated `config/aws.php` configuration file.
+The settings can be found in the generated `config/aws.php` configuration file. By default, the credentials and region settings will pull from your `.env` file.
 
 ```php
 return [
     'credentials' => [
-        'key'    => 'YOUR_AWS_ACCESS_KEY_ID',
-        'secret' => 'YOUR_AWS_SECRET_ACCESS_KEY',
+        'key'    => env('AWS_ACCESS_KEY_ID', ''),
+        'secret' => env('AWS_SECRET_ACCESS_KEY', ''),
     ],
-    'region' => 'us-west-2',
+    'region' => env('AWS_REGION', 'us-east-1'),
     'version' => 'latest',
     
     // You can override settings for specific services
