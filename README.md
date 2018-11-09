@@ -98,6 +98,8 @@ return [
 ];
 ```
 
+Note that you can always delete the `credentials` line from this file if you'd like to use the [default SDK Configuration Provider chain](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/guide_credentials.html#default-credential-chain) instead.
+
 Referring Laravel 5.2.0 [Upgrade guide](https://laravel.com/docs/5.2/upgrade#upgrade-5.2.0), you must using config 
 file instead of environment variable option if using php artisan `config:cache`.
 
