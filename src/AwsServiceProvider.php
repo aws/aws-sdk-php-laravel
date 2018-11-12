@@ -10,7 +10,7 @@ use Laravel\Lumen\Application as LumenApplication;
  */
 class AwsServiceProvider extends ServiceProvider
 {
-    const VERSION = '3.2.1';
+    const VERSION = '3.3.0';
 
     /**
      * Indicates if loading of the provider is deferred.

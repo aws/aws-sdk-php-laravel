@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.3.0 - 2018-11-12
+
+* Adds AWS credentials to published service provider configuration by default 
+
 ## 3.2.1 - 2018-10-19
 
 * Update Travis CI with later PHP versions
