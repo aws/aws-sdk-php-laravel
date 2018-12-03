@@ -26,15 +26,15 @@ class AwsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $source = dirname(__DIR__).'/config/aws.php';
-
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
-            $this->publishes([$source => config_path('aws.php')]);
+            $this->publishes([
+                dirname(__DIR__).'/config/aws_publish.php' => config_path('aws.php')
+            ]);
         } elseif ($this->app instanceof LumenApplication) {
             $this->app->configure('aws');
         }
 
-        $this->mergeConfigFrom($source, 'aws');
+        $this->mergeConfigFrom(dirname(__DIR__).'/config/aws_default.php', 'aws');
     }
 
     /**
