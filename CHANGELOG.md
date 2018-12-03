@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.3.1 - 2018-12-3
+
+*  Modify service provider to use different config for publishing and default usage
+
 ## 3.3.0 - 2018-11-12
 
 * Adds AWS credentials to published service provider configuration by default 
