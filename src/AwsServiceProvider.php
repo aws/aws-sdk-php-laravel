@@ -10,7 +10,7 @@ use Laravel\Lumen\Application as LumenApplication;
  */
 class AwsServiceProvider extends ServiceProvider
 {
-    const VERSION = '3.3.0';
+    const VERSION = '3.3.1';
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -28,7 +28,7 @@ class AwsServiceProvider extends ServiceProvider
     {
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes(
-                [__DIR__.'/../config/aws.php' => config_path('aws.php')],
+                [__DIR__.'/../config/aws_publish.php' => config_path('aws.php')],
                 'aws-config'
             );
         } elseif ($this->app instanceof LumenApplication) {
@@ -44,7 +44,7 @@ class AwsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/aws.php',
+            __DIR__.'/../config/aws_default.php',
             'aws'
         );
 
