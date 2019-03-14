@@ -18,9 +18,14 @@ matrix:
     - php: nightly
 
 install:
-  - if {[ ${TRAVIS_PHP_VERSION} == "5.5.9" ] || [ ${TRAVIS_PHP_VERSION} == "5.6" ] || [ ${TRAVIS_PHP_VERSION} == "7.0" ]};
-    then travis_retry composer require laravel/framework;
-    else travis_retry composer update --no-interaction --prefer-source;
+  - if [ ${TRAVIS_PHP_VERSION} == "5.5.9" ]; then
+        travis_retry composer require laravel/framework "5.2.*";
+    elif [ ${TRAVIS_PHP_VERSION} == "5.6" ]; then
+        travis_retry composer require laravel/framework "5.4.*";
+    elif [ ${TRAVIS_PHP_VERSION} == "7.0" ]; then
+        travis_retry composer require laravel/framework "5.5.*";
+    else
+        travis_retry composer update --no-interaction --prefer-source;
     fi
 
 script: make test
