@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 3.3.2 - 2019-03-15
+
+* Align with suggested Laravel configuration practices
+* Travis CI updated with PHP 7.3 and dependency resolution fixes
+
 ## 3.3.1 - 2018-12-3
 
 *  Modify service provider to use different config for publishing and default usage
