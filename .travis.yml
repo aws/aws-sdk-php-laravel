@@ -17,6 +17,9 @@ matrix:
     - php: hhvm
     - php: nightly
 
+before_install:
+- echo "memory_limit=3G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+
 install:
   - if [ ${TRAVIS_PHP_VERSION} == "5.5.9" ]; then
         travis_retry composer require laravel/framework "5.2.*";
