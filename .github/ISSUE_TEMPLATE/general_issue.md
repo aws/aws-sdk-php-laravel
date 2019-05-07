@@ -12,7 +12,7 @@ Please fill out the sections below to help us address your issue.
 ### Version of AWS SDK for PHP?
 
 
-### Version of AWS Service Provider for Laravel 5?
+### Version of AWS Service Provider for Laravel?
 
 
 ### Version of Laravel (`php artisan --version`)?
