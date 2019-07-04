@@ -90,7 +90,7 @@ return [
     ],
     'region' => env('AWS_REGION', 'us-east-1'),
     'version' => 'latest',
-    
+
     // You can override settings for specific services
     'Ses' => [
         'region' => 'us-east-1',
@@ -109,7 +109,7 @@ the SDK's User Guide.
 ## Usage
 
 In order to use the AWS SDK for PHP within your app, you need to retrieve it from the [Laravel Service
-Container](https://laravel.com/docs/container#binding). The following example uses the Amazon S3 client to upload a file.
+Container](https://laravel.com/docs/container#binding). The following example uses the Amazon S3 client to upload a file (in the full Laravel framework).
 
 ```php
 $s3 = App::make('aws')->createClient('s3');
@@ -121,10 +121,21 @@ $s3->putObject(array(
 ```
 
 If the AWS facade is registered within the `aliases` section of the application configuration, you can also use the
-following technique.
+following technique (in the full Laravel framework).
 
 ```php
 $s3 = AWS::createClient('s3');
+$s3->putObject(array(
+    'Bucket'     => 'YOUR_BUCKET',
+    'Key'        => 'YOUR_OBJECT_KEY',
+    'SourceFile' => '/the/path/to/the/file/you/are/uploading.ext',
+));
+```
+
+To use in Lumen, you need to retrieve it from the service container a bit differently:
+
+```php
+$s3 = app('aws')->createClient('s3');
 $s3->putObject(array(
     'Bucket'     => 'YOUR_BUCKET',
     'Key'        => 'YOUR_OBJECT_KEY',
