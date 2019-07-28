@@ -132,6 +132,17 @@ $s3->putObject(array(
 ));
 ```
 
+## Quick Examples
+
+### Get a file from Amazon S3
+
+```php
+$s3 = AWS::createClient('s3');
+$result = $s3->listObjects([
+    'Bucket' => 'YOUR_BUCKET',
+]);
+```
+
 ## Links
 
 * [AWS SDK for PHP on Github](http://github.com/aws/aws-sdk-php/)
