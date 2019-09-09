@@ -1,3 +1,5 @@
+dist: trusty
+
 language: php
 
 php:
@@ -7,6 +9,7 @@ php:
   - 7.1
   - 7.2
   - 7.3
+  - 7.4
   - hhvm
   - nightly
 
@@ -16,6 +19,7 @@ matrix:
   allow_failures:
     - php: hhvm
     - php: nightly
+    - php: 7.4
 
 before_install:
 - echo "memory_limit=3G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
