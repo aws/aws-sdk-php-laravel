@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 3.4.0 - 2019-09-09
+
+* Adds support for Laravel 6.0
+* Travis CI configuration updates
+
 ## 3.3.2 - 2019-03-15
 
 * Align with suggested Laravel configuration practices
