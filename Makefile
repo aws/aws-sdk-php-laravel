@@ -17,9 +17,11 @@ remove-deps:
 
 uninstall-laravel: remove-deps
 	composer remove laravel/framework
+	composer remove illuminate/support
 
 uninstall-lumen: remove-deps
 	composer remove laravel/lumen-framework
+	composer remove illuminate/support
 
 # Ensures that the TAG variable was passed to the make command
 check-tag:
