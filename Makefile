@@ -3,7 +3,6 @@ test: remove-deps
 	make test-lumen
 
 test-laravel:
-	composer require illuminate/support:~6.0
 	composer require laravel/framework
 	vendor/bin/phpunit
 	make uninstall-laravel

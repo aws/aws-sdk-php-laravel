@@ -28,6 +28,7 @@ install:
     elif [ ${TRAVIS_PHP_VERSION} == "7.0" ]; then
         travis_retry composer require laravel/framework "5.5.*";
     else
+        travis_retry composer require illuminate/support "~6.0";
         travis_retry composer update --no-interaction --prefer-source;
     fi
 
