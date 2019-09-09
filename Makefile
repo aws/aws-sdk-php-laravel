@@ -15,6 +15,7 @@ test-lumen:
 
 remove-deps:
 	rm -rf vendor
+	rm composer.lock
 
 uninstall-laravel: remove-deps
 	composer remove laravel/framework
