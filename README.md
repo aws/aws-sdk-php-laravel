@@ -1,4 +1,4 @@
-# AWS Service Provider for Laravel 5
+# AWS Service Provider for Laravel 5/6
 
 [![@awsforphp on Twitter](http://img.shields.io/badge/twitter-%40awsforphp-blue.svg?style=flat)](https://twitter.com/awsforphp)
 [![Build Status](https://img.shields.io/travis/aws/aws-sdk-php-laravel.svg)](https://travis-ci.org/aws/aws-sdk-php-laravel)
