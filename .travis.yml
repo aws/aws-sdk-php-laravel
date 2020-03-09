@@ -1,41 +1,52 @@
 dist: trusty
 
+sudo: false
+
 language: php
 
-php:
-  - 5.5.9
-  - 5.6
-  - 7.0
-  - 7.1
-  - 7.2
-  - 7.3
-  - 7.4
-  - nightly
-
-sudo: false
+jobs:
+  include:
+    - php: 5.5.9
+      env: LARAVEL="5.1.*"
+    - php: 7.0
+      env: LARAVEL="5.5.*"
+    - php: 7.1
+      env: LARAVEL="^5.5"
+    - php: 7.2
+      env: LARAVEL="^6.0"
+    - php: 7.2
+      env: LARAVEL="^7.0"
+    - php: 7.3
+      env: LARAVEL="^6.0"
+    - php: 7.3
+      env: LARAVEL="^7.0"
+    - php: 7.4
+      env: LARAVEL="^6.0"
+    - php: 7.4
+      env: LARAVEL="^7.0"
+    - php: nightly
+      env: LARAVEL="^6.0"
+    - php: nightly
+      env: LARAVEL="^7.0"
+    - php: hhvm-3.18
+      env: LARAVEL="^6.0"
+    - php: hhvm-3.18
+      env: LARAVEL="^7.0"
 
 cache:
   directories:
-    - $HOME/.composer/cache
+    - $HOME/.composer/cache/files
 
 matrix:
   allow_failures:
     - php: nightly
-    - php: 7.4
 
 before_install:
   - echo "memory_limit=3G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-  - travis_retry composer self-update
 
-install:
-  - if [ ${TRAVIS_PHP_VERSION} == "5.5.9" ]; then
-        travis_retry composer require laravel/framework "5.2.*";
-    elif [ ${TRAVIS_PHP_VERSION} == "5.6" ]; then
-        travis_retry composer require laravel/framework "5.4.*";
-    elif [ ${TRAVIS_PHP_VERSION} == "7.0" ]; then
-        travis_retry composer require laravel/framework "5.5.*";
-    else
-        travis_retry composer update --no-interaction --prefer-dist;
-    fi
-
-script: make test
+script:
+  - travis_retry composer require laravel/framework:${LARAVEL} --no-interaction --prefer-dist
+  - vendor/bin/phpunit
+  - composer remove laravel/framework
+  - travis_retry composer require laravel/lumen-framework:${LARAVEL} --no-interaction --prefer-dist
+  - vendor/bin/phpunit
