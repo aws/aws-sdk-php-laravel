@@ -2,9 +2,16 @@ dist: trusty
 
 sudo: false
 
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
 language: php
 
 matrix:
+  allow_failures:
+    - php: nightly
+
   include:
     - php: 5.5.9
       env: LARAVEL="5.1.*"
@@ -33,13 +40,6 @@ matrix:
     - php: nightly
       env: LARAVEL="^7.0"
 
-cache:
-  directories:
-    - $HOME/.composer/cache/files
-
-matrix:
-  allow_failures:
-    - php: nightly
 
 before_install:
   - echo "memory_limit=3G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
