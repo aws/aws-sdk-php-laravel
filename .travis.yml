@@ -43,8 +43,11 @@ matrix:
 before_install:
   - echo "memory_limit=3G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
-script:
+install:
+  # composer require instead of in the `script:` section to take advantage of the cache
   - travis_retry composer require laravel/framework:${LARAVEL} --no-interaction --prefer-dist
+
+script:
   - vendor/bin/phpunit
   - composer remove laravel/framework
   - rm composer.lock
