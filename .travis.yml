@@ -4,13 +4,17 @@ sudo: false
 
 language: php
 
-jobs:
+matrix:
   include:
     - php: 5.5.9
+      env: LARAVEL="5.1.*"
+    - php: hhvm-3.18
       env: LARAVEL="5.1.*"
     - php: 7.0
       env: LARAVEL="5.5.*"
     - php: 7.1
+      env: LARAVEL="^5.5"
+    - php: 7.2
       env: LARAVEL="^5.5"
     - php: 7.2
       env: LARAVEL="^6.0"
@@ -27,10 +31,6 @@ jobs:
     - php: nightly
       env: LARAVEL="^6.0"
     - php: nightly
-      env: LARAVEL="^7.0"
-    - php: hhvm-3.18
-      env: LARAVEL="^6.0"
-    - php: hhvm-3.18
       env: LARAVEL="^7.0"
 
 cache:
