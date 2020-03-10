@@ -14,32 +14,31 @@ matrix:
 
   include:
     - php: 5.5.9
-      env: LARAVEL="5.1.*"
+      env: LARAVEL="5.1.*" LUMEN="5.1.*"
     - php: hhvm-3.18
-      env: LARAVEL="5.1.*"
+      env: LARAVEL="5.1.*" LUMEN="5.1.*"
     - php: 7.0
-      env: LARAVEL="5.5.*"
+      env: LARAVEL="5.5.*" LUMEN="5.5.*"
     - php: 7.1
-      env: LARAVEL="^5.5"
+      env: LARAVEL="^5.5" LUMEN="^5.5"
     - php: 7.2
-      env: LARAVEL="^5.5"
+      env: LARAVEL="^5.5" LUMEN="^5.5"
     - php: 7.2
-      env: LARAVEL="^6.0"
+      env: LARAVEL="^6.0" LUMEN="^6.0"
     - php: 7.2
-      env: LARAVEL="^7.0"
+      env: LARAVEL="^7.0" LUMEN="7.x-dev"
     - php: 7.3
-      env: LARAVEL="^6.0"
+      env: LARAVEL="^6.0" LUMEN="^6.0"
     - php: 7.3
-      env: LARAVEL="^7.0"
+      env: LARAVEL="^7.0" LUMEN="7.x-dev"
     - php: 7.4
-      env: LARAVEL="^6.0"
+      env: LARAVEL="^6.0" LUMEN="^6.0"
     - php: 7.4
-      env: LARAVEL="^7.0"
+      env: LARAVEL="^7.0" LUMEN="7.x-dev"
     - php: nightly
-      env: LARAVEL="^6.0"
+      env: LARAVEL="^6.0" LUMEN="^6.0"
     - php: nightly
-      env: LARAVEL="^7.0"
-
+      env: LARAVEL="^7.0" LUMEN="7.x-dev"
 
 before_install:
   - echo "memory_limit=3G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
@@ -48,5 +47,5 @@ script:
   - travis_retry composer require laravel/framework:${LARAVEL} --no-interaction --prefer-dist
   - vendor/bin/phpunit
   - composer remove laravel/framework
-  - travis_retry composer require laravel/lumen-framework:${LARAVEL} --no-interaction --prefer-dist
+  - travis_retry composer require laravel/lumen-framework:${LUMEN} --no-interaction --prefer-dist
   - vendor/bin/phpunit
