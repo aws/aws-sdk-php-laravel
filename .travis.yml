@@ -1,7 +1,5 @@
 dist: trusty
 
-sudo: false
-
 cache:
   directories:
     - $HOME/.composer/cache/files
