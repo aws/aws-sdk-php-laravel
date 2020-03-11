@@ -1,38 +1,50 @@
 dist: trusty
 
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
 language: php
-
-php:
-  - 5.5.9
-  - 5.6
-  - 7.0
-  - 7.1
-  - 7.2
-  - 7.3
-  - 7.4
-  - hhvm
-  - nightly
-
-sudo: false
 
 matrix:
   allow_failures:
-    - php: hhvm
     - php: nightly
+
+  include:
+    - php: 5.5.9
+      env: LARAVEL="5.1.*" LUMEN="5.1.*"
+    - php: hhvm-3.18
+      env: LARAVEL="5.1.*" LUMEN="5.1.*"
+    - php: 7.0
+      env: LARAVEL="5.5.*" LUMEN="5.5.*"
+    - php: 7.1
+      env: LARAVEL="^5.5" LUMEN="^5.5"
+    - php: 7.2
+      env: LARAVEL="^5.5" LUMEN="^5.5"
+    - php: 7.2
+      env: LARAVEL="^6.0" LUMEN="^6.0"
+    - php: 7.2
+      env: LARAVEL="^7.0" LUMEN="^7.0@dev"
+    - php: 7.3
+      env: LARAVEL="^6.0" LUMEN="^6.0"
+    - php: 7.3
+      env: LARAVEL="^7.0" LUMEN="^7.0@dev"
     - php: 7.4
+      env: LARAVEL="^6.0" LUMEN="^6.0"
+    - php: 7.4
+      env: LARAVEL="^7.0" LUMEN="^7.0@dev"
+    - php: nightly
+      env: LARAVEL="^6.0" LUMEN="^6.0"
+    - php: nightly
+      env: LARAVEL="^7.0" LUMEN="^7.0@dev"
 
 before_install:
-- echo "memory_limit=3G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
+  - echo "memory_limit=3G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
-install:
-  - if [ ${TRAVIS_PHP_VERSION} == "5.5.9" ]; then
-        travis_retry composer require laravel/framework "5.2.*";
-    elif [ ${TRAVIS_PHP_VERSION} == "5.6" ]; then
-        travis_retry composer require laravel/framework "5.4.*";
-    elif [ ${TRAVIS_PHP_VERSION} == "7.0" ]; then
-        travis_retry composer require laravel/framework "5.5.*";
-    else
-        travis_retry composer update --no-interaction --prefer-source;
-    fi
-
-script: make test
+script:
+  - travis_retry composer require laravel/framework:${LARAVEL} --no-interaction --prefer-dist
+  - vendor/bin/phpunit
+  - composer remove laravel/framework
+  - rm composer.lock
+  - travis_retry composer require laravel/lumen-framework:${LUMEN} --no-interaction --prefer-dist
+  - vendor/bin/phpunit
