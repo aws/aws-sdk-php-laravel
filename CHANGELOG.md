@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 3.5.0 - 2020-03-11
+
+* Adds support for Laravel 7.0
+* Travis CI configuration updates
+
 ## 3.4.0 - 2019-09-09
 
 * Adds support for Laravel 6.0
