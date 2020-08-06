@@ -18,8 +18,15 @@ PHP and Laravel 5.1.
 * **2.x** ([2.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/2.0)) - For `laravel/framework:5.0.*` and `aws/aws-sdk-php:~2.4`
 * **1.x** ([1.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/1.0)) - For `laravel/framework:4.*` and `aws/aws-sdk-php:~2.4`
 
-## Installation
+Jump To:
+* [Getting Started](_#Getting-Started_)
+* [Getting Help](_#Getting-Help_)
+* [Contributing](_#Contributing_)
+* [More Resources](_#Resources_)
 
+## Getting Started
+
+### Installation
 The AWS Service Provider can be installed via [Composer](http://getcomposer.org) by requiring the
 `aws/aws-sdk-php-laravel` package in your project's `composer.json`.
 
@@ -39,14 +46,14 @@ php composer.phar update
 To use the AWS Service Provider, you must register the provider when bootstrapping your application.
 
 
-### Lumen
+#### Lumen
 In Lumen find the `Register Service Providers` in your `bootstrap/app.php` and register the AWS Service Provider.
 
 ```php
     $app->register(Aws\Laravel\AwsServiceProvider::class);
 ```
 
-### Laravel
+#### Laravel
 In Laravel find the `providers` key in your `config/app.php` and register the AWS Service Provider.
 
 ```php
@@ -65,7 +72,7 @@ Find the `aliases` key in your `config/app.php` and add the AWS facade alias.
     )
 ```
 
-## Configuration
+### Configuration
 
 By default, the package uses the following environment variables to auto-configure the plugin without modification:
 ```
@@ -100,13 +107,13 @@ return [
 
 Note that you can always delete the `credentials` line from this file if you'd like to use the [default SDK Configuration Provider chain](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/guide_credentials.html#default-credential-chain) instead.
 
-Referring Laravel 5.2.0 [Upgrade guide](https://laravel.com/docs/5.2/upgrade#upgrade-5.2.0), you must using config 
+Referring Laravel 5.2.0 [Upgrade guide](https://laravel.com/docs/5.2/upgrade#upgrade-5.2.0), you must using config
 file instead of environment variable option if using php artisan `config:cache`.
 
 Learn more about [configuring the SDK](http://docs.aws.amazon.com/aws-sdk-php/v3/guide/guide/configuration.html) on
 the SDK's User Guide.
 
-## Usage
+### Usage
 
 In order to use the AWS SDK for PHP within your app, you need to retrieve it from the [Laravel Service
 Container](https://laravel.com/docs/container#binding). The following example uses the Amazon S3 client to upload a file.
@@ -132,7 +139,28 @@ $s3->putObject(array(
 ));
 ```
 
-## Links
+## Getting Help
+
+Please use these community resources for getting help. We use the GitHub issues for tracking bugs and feature requests and have limited bandwidth to address them.
+
+* Ask a question on [StackOverflow](https://stackoverflow.com/) and tag it with [`aws-php-sdk`](http://stackoverflow.com/questions/tagged/aws-php-sdk)
+* Come join the AWS SDK for PHP [gitter](https://gitter.im/aws/aws-sdk-php)
+* Open a support ticket with [AWS Support](https://console.aws.amazon.com/support/home/)
+* If it turns out that you may have found a bug, please [open an issue](https://github.com/aws/aws-sdk-php-laravel/issues/new/choose)
+
+This SDK implements AWS service APIs. For general issues regarding the AWS services and their limitations, you may also take a look at the [Amazon Web Services Discussion Forums](https://forums.aws.amazon.com/).
+
+### Opening Issues
+
+If you encounter a bug with `aws-sdk-php-laravel` we would like to hear about it. Search the existing issues and try to make sure your problem doesn’t already exist before opening a new issue. It’s helpful if you include the version of `aws-sdk-php-laravel`, PHP version and OS you’re using. Please include a stack trace and reduced repro case when appropriate, too.
+
+The GitHub issues are intended for bug reports and feature requests. For help and questions with using `aws-sdk-php` please make use of the resources listed in the Getting Help section. There are limited resources available for handling issues and by keeping the list of open issues lean we can respond in a timely manner.
+
+## Contributing
+
+We work hard to provide a high-quality and useful SDK for our AWS services, and we greatly value feedback and contributions from our community. Please review our [contributing guidelines](./CONTRIBUTING.md) before submitting any issues or pull requests to ensure we have all the necessary information to effectively respond to your bug report or contribution.
+
+## Resources
 
 * [AWS SDK for PHP on Github](http://github.com/aws/aws-sdk-php/)
 * [AWS SDK for PHP website](http://aws.amazon.com/sdkforphp/)
