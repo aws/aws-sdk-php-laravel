@@ -1,4 +1,4 @@
-# AWS Service Provider for Laravel 5/6/7
+# AWS Service Provider for Laravel 5/6/7/8
 
 [![@awsforphp on Twitter](http://img.shields.io/badge/twitter-%40awsforphp-blue.svg?style=flat)](https://twitter.com/awsforphp)
 [![Build Status](https://img.shields.io/travis/aws/aws-sdk-php-laravel.svg)](https://travis-ci.org/aws/aws-sdk-php-laravel)
@@ -14,7 +14,7 @@ PHP and Laravel 5.1.
 
 **Major Versions:**
 
-* **3.x** (YOU ARE HERE) - For `laravel/framework:~5.1|~6.0|~7.0` and `aws/aws-sdk-php:~3.0`
+* **3.x** (YOU ARE HERE) - For `laravel/framework:~5.1|~6.0|~7.0|~8.0` and `aws/aws-sdk-php:~3.0`
 * **2.x** ([2.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/2.0)) - For `laravel/framework:5.0.*` and `aws/aws-sdk-php:~2.4`
 * **1.x** ([1.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/1.0)) - For `laravel/framework:4.*` and `aws/aws-sdk-php:~2.4`
 
