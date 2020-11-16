@@ -17,7 +17,7 @@ return [
     | http://docs.aws.amazon.com/aws-sdk-php/v3/guide/guide/configuration.html
     |
     */
-    'region' => env('AWS_REGION', 'us-east-1'),
+    'region' => env('AWS_REGION', env('AWS_DEFAULT_REGION', 'us-east-1')),
     'version' => 'latest',
     'ua_append' => [
         'L5MOD/' . AwsServiceProvider::VERSION,
