@@ -53,7 +53,7 @@ abstract class AwsServiceProviderTest extends TestCase
         $config = $app['config']->get('aws');
 
         $this->assertArrayHasKey('ua_append', $config);
-        $this->assertInternalType('array', $config['ua_append']);
+        $this->assertIsArray($config['ua_append']);
         $this->assertNotEmpty($config['ua_append']);
         $this->assertNotEmpty(array_filter($config['ua_append'], function ($ua) {
             return false !== strpos($ua, AwsServiceProvider::VERSION);
