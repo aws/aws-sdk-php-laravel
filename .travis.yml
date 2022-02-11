@@ -37,12 +37,30 @@ matrix:
       env: LARAVEL="^7.0" LUMEN="^7.0"
     - php: 7.4
       env: LARAVEL="^8.0" LUMEN="^8.0@dev"
+    - php: 8.0
+      env: LARAVEL="^6.0" LUMEN="^6.0"
+    - php: 8.0
+      env: LARAVEL="^7.0" LUMEN="^7.0"
+    - php: 8.0
+      env: LARAVEL="^8.0" LUMEN="^8.0"
+    - php: 8.0
+      env: LARAVEL="^9.0" LUMEN="^9.0@dev"
+    - php: 8.1
+      env: LARAVEL="^6.0" LUMEN="^6.0"
+    - php: 8.1
+      env: LARAVEL="^7.0" LUMEN="^7.0"
+    - php: 8.1
+      env: LARAVEL="^8.0" LUMEN="^8.0"
+    - php: 8.1
+      env: LARAVEL="^9.0" LUMEN="^9.0@dev"
     - php: nightly
       env: LARAVEL="^6.0" LUMEN="^6.0"
     - php: nightly
       env: LARAVEL="^7.0" LUMEN="^7.0"
     - php: nightly
-      env: LARAVEL="^8.0" LUMEN="^8.0@dev"
+      env: LARAVEL="^8.0" LUMEN="^8.0"
+    - php: nightly
+      env: LARAVEL="^9.0" LUMEN="^9.0@dev"
 
 before_install:
   - echo "memory_limit=3G" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
