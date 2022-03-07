@@ -13,7 +13,8 @@ jobs:
     strategy:
       #for each of the following versions of PHP, with and without --prefer-lowest
       matrix:
-        php-versions: ['5.5']
+        php-versions: ['5.5', '7.0']
+        laravel-versions: ['5.1.*', '5.5.*']
         composer-options: ['', '--prefer-lowest']
     #set the name for each job
     name: PHP ${{ matrix.php-versions }} ${{ matrix.composer-options }}
@@ -34,6 +35,10 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v3
 
+      #find composer
+      - name: Find Composer
+        run: which composer
+
       #remove laravel
       - name: Remove laravel
         run: |
@@ -42,7 +47,7 @@ jobs:
 
       #require laravel
       - name: require laravel
-        run: composer require laravel/framework:5.1.* --no-interaction --prefer-dist ${{ matrix.composer-options }}
+        run: composer require laravel/framework:${{ matrix.laravel-versions }} --no-interaction --prefer-dist ${{ matrix.composer-options }}
 
       #run tests
       - name: Run test suite
