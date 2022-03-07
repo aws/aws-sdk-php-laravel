@@ -33,7 +33,7 @@ jobs:
       #checkout the codebase from github
       - name: Checkout codebase
         uses: actions/checkout@v3
-        
+
       #remove laravel
       - name: Remove laravel
         run: |
@@ -42,7 +42,7 @@ jobs:
 
       #require laravel
       - name: require laravel
-        run: composer require laravel/framework:5.1.* --no-interaction --prefer-dist --ignore-platform-reqs ${{ matrix.composer-options }}
+        run: composer require laravel/framework:5.1.* --no-interaction --prefer-dist ${{ matrix.composer-options }}
 
       #run tests
       - name: Run test suite
@@ -56,7 +56,7 @@ jobs:
 
       #require lumen
       - name: require laravel
-        run: composer require laravel/lumen-framework:5.1.* --no-interaction --prefer-dist --ignore-platform-reqs ${{ matrix.composer-options }}
+        run: composer require laravel/lumen-framework:5.1.* --no-interaction --prefer-dist ${{ matrix.composer-options }}
 
       #run tests
       - name: Run test suite
