@@ -13,8 +13,7 @@ jobs:
     strategy:
       #for each of the following versions of PHP, with and without --prefer-lowest
       matrix:
-        php-versions: ['']
-        laravel-versions: ['']
+        php-versions: ['5.5', '7.0']
         composer-options: ['', '--prefer-lowest']
         include:
           - php-versions: '5.5'
