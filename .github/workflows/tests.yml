@@ -33,6 +33,12 @@ jobs:
       #checkout the codebase from github
       - name: Checkout codebase
         uses: actions/checkout@v3
+        
+      #remove laravel
+      - name: Remove laravel
+        run: |
+          composer remove laravel/framework
+          rm composer.lock
 
       #require laravel
       - name: require laravel
