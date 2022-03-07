@@ -68,7 +68,7 @@ jobs:
       #upgrade to minimum supported php unit
       - if: ${{ matrix.php-versions >= '8.0'}}
         name: PHP 8.0+ specific setup
-        run: composer require --dev --ignore-platform-reqs phpunit/phpunit "^8.0"
+        run: composer require --dev --ignore-platform-reqs phpunit/phpunit ">=8.0"
 
       #require laravel
       - name: require laravel
