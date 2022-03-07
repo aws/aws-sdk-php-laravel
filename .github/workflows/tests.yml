@@ -13,13 +13,15 @@ jobs:
     strategy:
       #for each of the following versions of PHP, with and without --prefer-lowest
       matrix:
-        php-versions: ['5.5', '7.0']
+        php-versions: ['5.5', '7.0', '7.1']
         composer-options: ['', '--prefer-lowest']
         include:
           - php-versions: '5.5'
             laravel-versions: '5.1.*'
           - php-versions: '7.0'
             laravel-versions: '5.5.*'
+          - php-versions: '7.0'
+            laravel-versions: '^5.5'
     #set the name for each job
     name: PHP ${{ matrix.php-versions }} ${{ matrix.composer-options }}
     #set up environment variables used by unit tests
