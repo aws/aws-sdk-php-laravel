@@ -13,15 +13,18 @@ jobs:
     strategy:
       #for each of the following versions of PHP, with and without --prefer-lowest
       matrix:
-        php-versions: ['5.5', '7.0', '7.1']
+        php-versions: ['5.5', '5.6', '7.0', '7.1']
         composer-options: ['', '--prefer-lowest']
         include:
           - php-versions: '5.5'
             laravel-versions: '5.1.*'
+          - php-versions: '5.6'
+            laravel-versions: '5.1.*'
           - php-versions: '7.0'
             laravel-versions: '5.5.*'
-          - php-versions: '7.0'
+          - php-versions: '7.1'
             laravel-versions: '^5.5'
+
     #set the name for each job
     name: PHP ${{ matrix.php-versions }} ${{ matrix.composer-options }}
     #set up environment variables used by unit tests
@@ -40,10 +43,6 @@ jobs:
       #checkout the codebase from github
       - name: Checkout codebase
         uses: actions/checkout@v3
-
-      #find composer
-      - name: Find Composer
-        run: which composer
 
       #remove laravel
       - name: Remove laravel
