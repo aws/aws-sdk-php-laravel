@@ -6,7 +6,7 @@ use Laravel\Lumen\Application;
 
 class LumenAwsServiceProviderTest extends AwsServiceProviderTest
 {
-    public function setUp(): void
+    public function setUp()
     {
         if (!class_exists(Application::class)) {
             $this->markTestSkipped();
