@@ -13,7 +13,7 @@ jobs:
     strategy:
       #for each of the following versions of PHP, with and without --prefer-lowest
       matrix:
-        php-versions: ['5.5.0', '5.6.0', '7.0.0', '7.1.0', '7.2.0', '7.2.1', '7.2.2', '7.3.0', '7.3.1', '7.3.2', '7.4.0', '7.4.1', '7.4.2', '8.0.0']
+        php-versions: ['5.5.0', '5.6.0', '7.0.0', '7.1.0', '7.2.0', '7.2.1', '7.2.2', '7.3.0', '7.3.1', '7.3.2', '7.4.0', '7.4.1', '7.4.2']
         include:
           - php-versions: '5.5.0'
             laravel-versions: '5.1.*'
@@ -41,8 +41,6 @@ jobs:
             laravel-versions: '^7.0'
           - php-versions: '7.4.2'
             laravel-versions: '^8.0'
-          - php-versions: '8.0.0'
-            laravel-versions: '^9.0'
 
     #set the name for each job
     name: PHP ${{ matrix.php-versions }}
@@ -62,11 +60,6 @@ jobs:
       #checkout the codebase from github
       - name: Checkout codebase
         uses: actions/checkout@v3
-
-      #upgrade to minimum supported php unit
-      - if: ${{ matrix.php-versions >= '8.0'}}
-        name: PHP 8.0+ specific setup
-        run: composer require --dev --ignore-platform-reqs phpunit/phpunit ">=8.0"
 
       #require laravel
       - name: require laravel
