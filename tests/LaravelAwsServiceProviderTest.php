@@ -5,7 +5,7 @@ use Illuminate\Foundation\Application;
 
 class LaravelAwsServiceProviderTest extends AwsServiceProviderTest
 {
-    public function setUp(): void
+    public function setUp()
     {
         if (!class_exists(Application::class)) {
             $this->markTestSkipped();
