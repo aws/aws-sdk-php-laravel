@@ -62,7 +62,7 @@ jobs:
         uses: actions/checkout@v3
 
       #require laravel
-      - name: require laravel
+      - name: Require laravel
         run: composer require laravel/framework:${{ matrix.laravel-versions }} --no-interaction --prefer-dist
 
       #run tests
@@ -76,7 +76,7 @@ jobs:
           rm composer.lock
 
       #require lumen
-      - name: require laravel
+      - name: Require lumen
         run: composer require laravel/lumen-framework:${{ matrix.laravel-versions }} --no-interaction --prefer-dist
 
       #run tests
