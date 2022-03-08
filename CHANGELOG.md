@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 3.6.0 - 2020-09-14
+## 3.7.0 - 2022-03-08
 
 * Adds support for Laravel 8.0
 
