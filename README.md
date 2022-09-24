@@ -19,10 +19,10 @@ PHP and Laravel 5.1.
 * **1.x** ([1.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/1.0)) - For `laravel/framework:4.*` and `aws/aws-sdk-php:~2.4`
 
 Jump To:
-* [Getting Started](_#Getting-Started_)
-* [Getting Help](_#Getting-Help_)
-* [Contributing](_#Contributing_)
-* [More Resources](_#Resources_)
+* [Getting Started](#Getting-Started)
+* [Getting Help](#Getting-Help)
+* [Contributing](#Contributing)
+* [More Resources](#Resources)
 
 ## Getting Started
 
