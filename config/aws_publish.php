@@ -1,6 +1,14 @@
 <?php
 
 use Aws\Laravel\AwsServiceProvider;
+use Illuminate\Support\Facades\App;
+
+
+if (version_compare(App::version(), '5.8.0', '>=')) {
+    $awsRegion = env('AWS_DEFAULT_REGION', 'us-east-1');
+} else {
+    $awsRegion = env('AWS_REGION', 'us-east-1');
+}
 
 return [
 
@@ -20,7 +28,7 @@ return [
         'key'    => env('AWS_ACCESS_KEY_ID', ''),
         'secret' => env('AWS_SECRET_ACCESS_KEY', ''),
     ],
-    'region' => env('AWS_REGION', 'us-east-1'),
+    'region' => $awsRegion,
     'version' => 'latest',
     'ua_append' => [
         'L5MOD/' . AwsServiceProvider::VERSION,
