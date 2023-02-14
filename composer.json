@@ -30,7 +30,10 @@
     "autoload-dev": {
         "psr-4": { "Aws\\Laravel\\Test\\": "tests/" }
     },
-    "extra": {
+  "config": {
+    "allow-plugins": true
+  },
+  "extra": {
         "laravel": {
             "providers": [
                 "Aws\\Laravel\\AwsServiceProvider"
