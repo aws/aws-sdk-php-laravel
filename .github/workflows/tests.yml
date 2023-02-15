@@ -63,7 +63,7 @@ jobs:
 
       #require laravel
       - name: Require laravel
-        run: composer require laravel/framework:${{ matrix.laravel-versions }} --no-interaction --prefer-dist
+        run: composer require laravel/framework:${{ matrix.laravel-versions }} --no-interaction --prefer-dist --no-plugins
 
       #run tests
       - name: Run test suite
@@ -72,12 +72,12 @@ jobs:
       #remove laravel
       - name: Remove laravel
         run: |
-          composer remove laravel/framework
+          composer remove laravel/framework --no-plugins
           rm composer.lock
 
       #require lumen
       - name: Require lumen
-        run: composer require laravel/lumen-framework:${{ matrix.laravel-versions }} --no-interaction --prefer-dist
+        run: composer require laravel/lumen-framework:${{ matrix.laravel-versions }} --no-interaction --prefer-dist --no-plugins
 
       #run tests
       - name: Run test suite
