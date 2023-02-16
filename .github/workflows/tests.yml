@@ -11,39 +11,53 @@ jobs:
   run:
     runs-on: ubuntu-18.04
     strategy:
-      #for each of the following versions of PHP, with and without --prefer-lowest
       matrix:
-        php-versions: ['5.5.0', '5.6.0', '7.0.0', '7.1.0', '7.2.0', '7.2.1', '7.2.2', '7.3.0', '7.3.1', '7.3.2', '7.4.0', '7.4.1', '7.4.2']
         include:
-          - php-versions: '5.5.0'
+          - php-versions: '5.5'
             laravel-versions: '5.1.*'
-          - php-versions: '5.6.0'
+          - php-versions: '5.6'
             laravel-versions: '5.1.*'
-          - php-versions: '7.0.0'
+          - php-versions: '7.0'
             laravel-versions: '5.5.*'
-          - php-versions: '7.1.0'
+          - php-versions: '7.1'
             laravel-versions: '^5.5'
-          - php-versions: '7.2.0'
+          - php-versions: '7.2'
             laravel-versions: '^5.5'
-          - php-versions: '7.2.1'
+          - php-versions: '7.2'
             laravel-versions: '^6.0'
-          - php-versions: '7.2.2'
+          - php-versions: '7.2'
             laravel-versions: '^7.0'
-          - php-versions: '7.3.0'
+          - php-versions: '7.3'
             laravel-versions: '^6.0'
-          - php-versions: '7.3.1'
+          - php-versions: '7.3'
             laravel-versions: '^7.0'
-          - php-versions: '7.3.2'
+          - php-versions: '7.3'
             laravel-versions: '^8.0'
-          - php-versions: '7.4.0'
+          - php-versions: '7.4'
             laravel-versions: '^6.0'
-          - php-versions: '7.4.1'
+          - php-versions: '7.4'
             laravel-versions: '^7.0'
-          - php-versions: '7.4.2'
+          - php-versions: '7.4'
             laravel-versions: '^8.0'
+          - php-versions: '8.0'
+            laravel-versions: '^7.0'
+          - php-versions: '8.0'
+            laravel-versions: '^8.0'
+          - php-versions: '8.0'
+            laravel-versions: '^9.0'
+          - php-versions: '8.1'
+            laravel-versions: '^8.0'
+          - php-versions: '8.1'
+            laravel-versions: '^9.0'
+          - php-versions: '8.1'
+            laravel-versions: '^10.0'
+          - php-versions: '8.2'
+            laravel-versions: '^9.0'
+          - php-versions: '8.2'
+            laravel-versions: '^10.0'
 
     #set the name for each job
-    name: PHP ${{ matrix.php-versions }}
+    name: PHP ${{ matrix.php-versions }} with Laravel ${{ matrix.laravel-versions }}
     #set up environment variables used by unit tests
     env:
       AWS_ACCESS_KEY_ID: foo
@@ -77,6 +91,7 @@ jobs:
 
       #require lumen
       - name: Require lumen
+        if: ${{ matrix.laravel-versions != '^10.0' && (matrix.php-versions != '^8.0' && matrix.laravel-versions != '^7.0') }}
         run: composer require laravel/lumen-framework:${{ matrix.laravel-versions }} --no-interaction --prefer-dist --no-plugins
 
       #run tests
