@@ -1,4 +1,6 @@
-<?php namespace Aws\Laravel;
+<?php
+
+namespace Aws\Laravel;
 
 use Aws\Sdk;
 use Illuminate\Foundation\Application as LaravelApplication;
@@ -28,7 +30,7 @@ class AwsServiceProvider extends ServiceProvider
     {
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes(
-                [__DIR__.'/../config/aws_publish.php' => config_path('aws.php')],
+                [__DIR__ . '/../config/aws_publish.php' => config_path('aws.php')],
                 'aws-config'
             );
         } elseif ($this->app instanceof LumenApplication) {
@@ -44,12 +46,20 @@ class AwsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/aws_default.php',
+            __DIR__ . '/../config/aws_default.php',
             'aws'
         );
 
         $this->app->singleton('aws', function ($app) {
             $config = $app->make('config')->get('aws');
+
+            // validate key and secrets, empty value will stop aws sdk from looking for the correct credentials
+            if (
+                !isset($config['credentials']['key']) || !isset($config['credentials']['secret'])
+                || empty($config['credentials']['key']) || empty($config['credentials']['secret'])
+            ) {
+                unset($config['credentials']);
+            }
 
             return new Sdk($config);
         });
@@ -66,5 +76,4 @@ class AwsServiceProvider extends ServiceProvider
     {
         return ['aws', 'Aws\Sdk'];
     }
-
 }
