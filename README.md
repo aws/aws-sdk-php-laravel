@@ -1,7 +1,5 @@
 # AWS Service Provider for Laravel 5/6/7/8/9/10
 
-[![@awsforphp on Twitter](http://img.shields.io/badge/twitter-%40awsforphp-blue.svg?style=flat)](https://twitter.com/awsforphp)
-[![Build Status](https://img.shields.io/travis/aws/aws-sdk-php-laravel.svg)](https://travis-ci.org/aws/aws-sdk-php-laravel)
 [![Latest Stable Version](https://img.shields.io/packagist/v/aws/aws-sdk-php-laravel.svg)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
 [![Total Downloads](https://img.shields.io/packagist/dt/aws/aws-sdk-php-laravel.svg)](https://packagist.org/packages/aws/aws-sdk-php-laravel)
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/aws/aws-sdk-php?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
@@ -19,10 +17,10 @@ PHP and Laravel 5.1.
 * **1.x** ([1.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/1.0)) - For `laravel/framework:4.*` and `aws/aws-sdk-php:~2.4`
 
 Jump To:
-* [Getting Started](_#Getting-Started_)
-* [Getting Help](_#Getting-Help_)
-* [Contributing](_#Contributing_)
-* [More Resources](_#Resources_)
+* [Getting Started](#Getting-Started)
+* [Getting Help](#Getting-Help)
+* [Contributing](#Contributing)
+* [More Resources](#Resources)
 
 ## Getting Started
 
