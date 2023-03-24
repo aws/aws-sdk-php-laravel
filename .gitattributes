@@ -7,4 +7,4 @@ CONTRIBUTING.md export-ignore
 Makefile export-ignore
 README.md export-ignore
 phpunit.xml export-ignore
-tests export-ignore
+tests/ export-ignore
