@@ -14,12 +14,17 @@ test-lumen:
 
 remove-deps:
 	rm -rf vendor
+	rm composer.lock
 
-uninstall-laravel: remove-deps
+uninstall-laravel:
+	make remove-deps
 	composer remove laravel/framework
+	make remove-deps
 
-uninstall-lumen: remove-deps
+uninstall-lumen:
+	make remove-deps
 	composer remove laravel/lumen-framework
+	make remove-deps
 
 # Ensures that the TAG variable was passed to the make command
 check-tag:
