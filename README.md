@@ -95,7 +95,6 @@ return [
     ],
     'region' => env('AWS_REGION', 'us-east-1'),
     'version' => 'latest',
-    
     // You can override settings for specific services
     'Ses' => [
         'region' => 'us-east-1',
@@ -130,6 +129,17 @@ following technique.
 
 ```php
 $s3 = AWS::createClient('s3');
+$s3->putObject(array(
+    'Bucket'     => 'YOUR_BUCKET',
+    'Key'        => 'YOUR_OBJECT_KEY',
+    'SourceFile' => '/the/path/to/the/file/you/are/uploading.ext',
+));
+```
+
+To use in Lumen, you need to retrieve it from the service container a bit differently:
+
+```php
+$s3 = app('aws')->createClient('s3');
 $s3->putObject(array(
     'Bucket'     => 'YOUR_BUCKET',
     'Key'        => 'YOUR_OBJECT_KEY',
