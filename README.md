@@ -12,7 +12,7 @@ PHP and Laravel 5.1.
 
 **Major Versions:**
 
-* **3.x** (YOU ARE HERE) - For `laravel/framework:5.1|6.0|7.0|8.0|9.0|10.0|11.0` and `aws/aws-sdk-php:~3.0`
+* **3.x** (YOU ARE HERE) - For `laravel/framework:6.0|7.0|8.0|9.0|10.0|11.0` and `aws/aws-sdk-php:^3.279.0`
 * **2.x** ([2.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/2.0)) - For `laravel/framework:5.0.*` and `aws/aws-sdk-php:~2.4`
 * **1.x** ([1.0 branch](https://github.com/aws/aws-sdk-php-laravel/tree/1.0)) - For `laravel/framework:4.*` and `aws/aws-sdk-php:~2.4`
 
