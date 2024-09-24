@@ -1,0 +1,24 @@
+name: PHP Composer
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  run:
+    runs-on: ubuntu-22.04
+    name: Glossary analysis
+    steps:
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          ini-values: memory_limit=4G, phar.readonly=false
+
+      - name: Checkout codebase
+        uses: actions/checkout@v3
+
+      - name: Glossary analysis
+        run: curl -so glossary https://raw.githubusercontent.com/javanile/php-glossary/main/bin/glossary && php glossary

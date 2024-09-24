@@ -1,0 +1,55 @@
+
+[files]
+exclude = tests
+        , vendor
+
+[domain]
+terms = alias
+      , app
+      , application
+      , aws
+      , aws access key id
+      , aws client interface
+      , aws default
+      , aws facade
+      , aws publish
+      , aws region
+      , aws secret access key
+      , aws service provider
+      , boot
+      , config
+      , config path
+      , configure
+      , credentials
+      , defer
+      , dir
+      , east
+      , env
+      , facade
+      , facades
+      , foundation
+      , get
+      , get facade accessor
+      , illuminate
+      , instanceof
+      , l5mod
+      , laravel
+      , laravel application
+      , latest
+      , lumen
+      , lumen application
+      , make
+      , merge config from
+      , provides
+      , publishes
+      , region
+      , register
+      , running in console
+      , sdk
+      , secret
+      , service provider
+      , singleton
+      , support
+      , ua append
+      , us
+      , version
