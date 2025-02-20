@@ -52,8 +52,12 @@ jobs:
           - php-versions: '8.3'
             laravel-versions: '^10.0'
           - php-versions: '8.3'
+            laravel-versions: '^11.0'
+          - php-versions: '8.4'
             laravel-versions: '^9.0'
-          - php-versions: '8.3'
+          - php-versions: '8.4'
+            laravel-versions: '^10.0'
+          - php-versions: '8.4'
             laravel-versions: '^11.0'
 
     #set the name for each job
