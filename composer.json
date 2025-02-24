@@ -1,8 +1,8 @@
 {
     "name": "aws/aws-sdk-php-laravel",
     "homepage": "https://aws.amazon.com/sdk-for-php/",
-    "description": "A simple Laravel 6/7/8/9/10/11 service provider for including the AWS SDK for PHP.",
-    "keywords": ["laravel", "laravel 6", "laravel 7", "laravel 8", "laravel 9", "laravel 10", "laravel 11", "aws", "amazon", "sdk", "s3", "ec2", "dynamodb"],
+    "description": "A simple Laravel 6/7/8/9/10/11/12 service provider for including the AWS SDK for PHP.",
+    "keywords": ["laravel", "laravel 6", "laravel 7", "laravel 8", "laravel 9", "laravel 10", "laravel 11", "laravel 12", "aws", "amazon", "sdk", "s3", "ec2", "dynamodb"],
     "type":"library",
     "license":"Apache-2.0",
     "authors":[
@@ -14,10 +14,10 @@
     "require": {
         "php": ">=7.2.5",
         "aws/aws-sdk-php": "^3.279.0",
-        "illuminate/support": "^6.0 || ^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0"
+        "illuminate/support": "^6.0 || ^7.0 || ^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.0 || ^9.0",
+        "phpunit/phpunit": "^8.0 || ^9.0 || ^10.0 || ^11.0 || ^12.0",
         "vlucas/phpdotenv": "^1.0 || ^2.0 || ^3.0 || ^4.0 || ^5.0",
         "yoast/phpunit-polyfills": "^1.0"
     },
