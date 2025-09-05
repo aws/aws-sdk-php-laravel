@@ -1,4 +1,6 @@
 name: PHP Composer
+permissions:
+  contents: read
 
 #whenever master has a PR or is pushed to
 on:
@@ -21,6 +23,8 @@ jobs:
             laravel-versions: '^6.0'
           - php-versions: '8.4'
             laravel-versions: '^6.0'
+          - php-versions: '8.5'
+            laravel-versions: '^6.0'
           - php-versions: '8.1'
             laravel-versions: '^7.0'
           - php-versions: '8.2'
@@ -29,6 +33,8 @@ jobs:
             laravel-versions: '^7.0'
           - php-versions: '8.4'
             laravel-versions: '^7.0'
+          - php-versions: '8.5'
+            laravel-versions: '^7.0'
           - php-versions: '8.1'
             laravel-versions: '^8.0'
           - php-versions: '8.2'
@@ -37,6 +43,8 @@ jobs:
             laravel-versions: '^8.0'
           - php-versions: '8.4'
             laravel-versions: '^8.0'
+          - php-versions: '8.5'
+            laravel-versions: '^8.0'
           - php-versions: '8.1'
             laravel-versions: '^9.0'
           - php-versions: '8.2'
@@ -44,6 +52,8 @@ jobs:
           - php-versions: '8.3'
             laravel-versions: '^9.0'
           - php-versions: '8.4'
+            laravel-versions: '^9.0'
+          - php-versions: '8.5'
             laravel-versions: '^9.0'
           - php-versions: '8.1'
             laravel-versions: '^10.0'
@@ -52,18 +62,24 @@ jobs:
           - php-versions: '8.3'
             laravel-versions: '^10.0'
           - php-versions: '8.4'
+            laravel-versions: '^10.0'
+          - php-versions: '8.5'
             laravel-versions: '^10.0'
           - php-versions: '8.2'
             laravel-versions: '^11.0'
           - php-versions: '8.3'
             laravel-versions: '^11.0'
           - php-versions: '8.4'
+            laravel-versions: '^11.0'
+          - php-versions: '8.5'
             laravel-versions: '^11.0'
           - php-versions: '8.2'
             laravel-versions: '^12.0'
           - php-versions: '8.3'
             laravel-versions: '^12.0'
           - php-versions: '8.4'
+            laravel-versions: '^12.0'
+          - php-versions: '8.5'
             laravel-versions: '^12.0'
 
     #set the name for each job
@@ -85,9 +101,14 @@ jobs:
       - name: Checkout codebase
         uses: actions/checkout@v3
 
-      #require laravel
+      #require laravel (with conditional platform ignore for PHP 8.5)
       - name: Require laravel
-        run: composer require laravel/framework:${{ matrix.laravel-versions }} --no-interaction --prefer-dist --no-plugins
+        run: |
+          if [[ "${{ matrix.php-versions }}" == "8.5" ]]; then
+            composer require laravel/framework:${{ matrix.laravel-versions }} --no-interaction --prefer-dist --no-plugins --ignore-platform-reqs
+          else
+            composer require laravel/framework:${{ matrix.laravel-versions }} --no-interaction --prefer-dist --no-plugins
+          fi
 
       #run tests
       - name: Run test suite
@@ -99,9 +120,14 @@ jobs:
           composer remove laravel/framework --no-plugins
           rm composer.lock
 
-      #require lumen
+      #require lumen (with conditional platform ignore for PHP 8.5)
       - name: Require lumen
-        run: composer require laravel/lumen-framework --no-interaction --prefer-dist --no-plugins
+        run: |
+          if [[ "${{ matrix.php-versions }}" == "8.5" ]]; then
+            composer require laravel/lumen-framework --no-interaction --prefer-dist --no-plugins --ignore-platform-reqs
+          else
+            composer require laravel/lumen-framework --no-interaction --prefer-dist --no-plugins
+          fi
 
       #run tests
       - name: Run test suite
