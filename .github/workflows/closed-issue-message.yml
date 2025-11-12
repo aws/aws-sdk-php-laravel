@@ -1,4 +1,7 @@
 name: Closed Issue Message
+permissions:
+  contents: read
+
 on:
     issues:
        types: [closed]
